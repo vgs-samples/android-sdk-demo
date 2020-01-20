@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">VGS Collect Demo</string>
+
+    <string name="demo_description">Collecting credit card data</string>
+    <string name="cvc">CVC</string>
+    <string name="card_holder">Name on card</string>
+    <string name="exp_date">Expiration date</string>
 </resources>
