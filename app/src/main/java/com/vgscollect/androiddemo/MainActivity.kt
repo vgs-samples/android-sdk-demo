@@ -14,7 +14,7 @@ import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity(), VgsCollectResponseListener, View.OnClickListener {
 
-    private val vgsForm = VGSCollect("tntxrsfgxcn")
+    private val vgsForm = VGSCollect("<vault_id>")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
