@@ -1,7 +1,11 @@
 ## VGS Collect Android SDK Demo
 
 This examples shows how easily you can integrate <a href="https://github.com/verygoodsecurity/vgs-collect-android">VGS Collect Android SDK</a> 
-into your application and secure sensitive data.
+into your application and secure sensitive data with us.
+
+<p align="center">
+    <img src="./android-sdk-demo.gif" width="250">
+</p>
 
 ## How to run it?
 
@@ -29,7 +33,7 @@ Find ``MainActivity.kt`` in line **17** replace ``<vault_id>`` with your organiz
  
 ### Step 5 
 
-Run application and submit the form then 
+Run the application and submit the form then 
 go to the Logs tab on a Dashboard find request and secure a payload. 
 Instruction for this step you can find <a href="https://www.verygoodsecurity.com/docs/getting-started/quick-integration#securing-inbound-connection" target="_blank">here</a>.
 
