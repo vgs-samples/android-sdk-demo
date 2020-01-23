@@ -14,7 +14,7 @@ into your application and secure sensitive data with us.
 - Preinstalled <a href="https://developer.android.com/studio" target="_blank">Android Studio</a>
 - Downloaded <a href="https://developer.android.com/studio" target="_blank">Android SDK</a>
 - Set up <a href="https://developer.android.com/studio/run/emulator" target="_blank">emulator</a>
-- Start with <a href="https://www.verygoodsecurity.com/">VGS</a>
+- Log In <a href="https://www.verygoodsecurity.com/">VGS</a>
 
 
 #### Step 1
