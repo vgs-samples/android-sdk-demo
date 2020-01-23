@@ -9,7 +9,7 @@ into your application and secure sensitive data with us.
 
 ## How to run it?
 
-### Preconditions:
+#### Preconditions:
 
 - Preinstalled <a href="https://developer.android.com/studio" target="_blank">Android Studio</a>
 - Downloaded <a href="https://developer.android.com/studio" target="_blank">Android SDK</a>
@@ -32,13 +32,13 @@ Clone demo application repository.
 Find ``MainActivity.kt`` in line **17** replace ``<vault_id>`` with your organization
  <a href="https://www.verygoodsecurity.com/docs/terminology/nomenclature#vault" target="_blank">vault id</a>. 
  
-### Step 4
+#### Step 4
 
 Run the application and submit the form then 
 go to the Logs tab on a Dashboard find request and secure a payload. 
 Instruction for this step you can find <a href="https://www.verygoodsecurity.com/docs/getting-started/quick-integration#securing-inbound-connection" target="_blank">here</a>.
 
-### Useful links
+#### Useful links
 
 - <a href="https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk" target="_blank">Documentation</a> 
 - <a href="https://github.com/verygoodsecurity/vgs-collect-android" target="_blank">GitHub Repository</a>
