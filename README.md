@@ -26,13 +26,13 @@ Clone demo application repository.
 
 ``git clone git@github.com:verygoodsecurity/android-sdk-demo.git``
 
-#### Step 4
+#### Step 3
 
 Find ``MainActivity.kt`` and replace ``<vault_id>`` with your organization
 <a href="https://www.verygoodsecurity.com/docs/terminology/nomenclature#vault" target="_blank">vault id</a>.  
 Your current ``<vault_id>`` you can find in <a href='https://dashboard.verygoodsecurity.com/' target="_blank">Dashboard</a>
 
-#### Step 5 
+#### Step 4 
 
 Run the application and submit the form then 
 go to the Logs tab on a Dashboard find request and secure a payload. 

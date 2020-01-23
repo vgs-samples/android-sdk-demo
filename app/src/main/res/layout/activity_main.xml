@@ -53,7 +53,6 @@
                 app:textColor="@android:color/black"
                 app:singleLine="true"
                 app:textSize="12dp"
-                app:text="4111111111111111"
                 app:hint="Card number"
                 app:cardBrandIconGravity="end"
                 app:fieldType="cardNumber"/>
