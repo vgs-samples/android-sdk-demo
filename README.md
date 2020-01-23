@@ -29,9 +29,8 @@ Clone demo application repository.
 
 #### Step 3
 
-Find ``MainActivity.kt`` and replace ``<vault_id>`` with your organization
-<a href="https://www.verygoodsecurity.com/docs/terminology/nomenclature#vault" target="_blank">vault id</a>.
-Your current ``<vault_id>`` you can find in <a href='https://dashboard.verygoodsecurity.com/' target="_blank">Dashboard</a>
+Find MainActivity.kt and replace <vault_id> with your organization vault id.
+Your current <vault_id> you can find in Dashboard
 
 #### Step 4
 
