@@ -9,11 +9,12 @@ into your application and secure sensitive data with us.
 
 ## How to run it?
 
-### Requirements
+### Preconditions:
 
-- Installed <a href="https://developer.android.com/studio" target="_blank">Android Studio</a>
-- Installed <a href="https://developer.android.com/studio/run/emulator" target="_blank">emulator</a>
-- Organization with <a href="https://www.verygoodsecurity.com/">VGS</a>
+- Preinstalled <a href="https://developer.android.com/studio" target="_blank">Android Studio</a>
+- Downloaded <a href="https://developer.android.com/studio" target="_blank">Android SDK</a>
+- Set up <a href="https://developer.android.com/studio/run/emulator" target="_blank">emulator</a>
+- Start with <a href="https://www.verygoodsecurity.com/">VGS</a>
 
 
 #### Step 1
@@ -26,12 +27,12 @@ Clone demo application repository.
 
 ``git clone git@github.com:verygoodsecurity/android-sdk-demo.git``
 
-#### Step 4
+#### Step 3
 
 Find ``MainActivity.kt`` in line **17** replace ``<vault_id>`` with your organization
  <a href="https://www.verygoodsecurity.com/docs/terminology/nomenclature#vault" target="_blank">vault id</a>. 
  
-### Step 5 
+### Step 4
 
 Run the application and submit the form then 
 go to the Logs tab on a Dashboard find request and secure a payload. 
@@ -40,5 +41,5 @@ Instruction for this step you can find <a href="https://www.verygoodsecurity.com
 ### Useful links
 
 - <a href="https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk" target="_blank">Documentation</a> 
-- <a href="https://github.com/verygoodsecurity/vgs-collect-android" target="_blank">Repo</a> 
+- <a href="https://github.com/verygoodsecurity/vgs-collect-android" target="_blank">GitHub Repository</a>
 
