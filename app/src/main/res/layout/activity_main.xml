@@ -54,8 +54,7 @@
                 app:singleLine="true"
                 app:textSize="12dp"
                 app:hint="Card number"
-                app:cardBrandIconGravity="end"
-                app:fieldType="cardNumber"/>
+                app:cardBrandIconGravity="end"/>
         </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
         <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
