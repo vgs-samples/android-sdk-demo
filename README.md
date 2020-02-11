@@ -40,6 +40,6 @@ Instruction for this step you can find <a href="https://www.verygoodsecurity.com
 
 ### Useful links
 
-- <a href="https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk" target="_blank">Documentation</a> 
+- <a href="https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/overview" target="_blank">Documentation</a> 
 - <a href="https://github.com/verygoodsecurity/vgs-collect-android" target="_blank">Repo</a> 
 
