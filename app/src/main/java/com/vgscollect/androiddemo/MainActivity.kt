@@ -8,6 +8,7 @@ import com.verygoodsecurity.api.cardio.ScanActivity
 import com.verygoodsecurity.vgscollect.core.HTTPMethod
 import com.verygoodsecurity.vgscollect.core.VGSCollect
 import com.verygoodsecurity.vgscollect.core.VgsCollectResponseListener
+import com.verygoodsecurity.vgscollect.core.model.VGSRequest
 import com.verygoodsecurity.vgscollect.core.model.VGSResponse
 import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity(), VgsCollectResponseListener, View.OnCli
         submitBtn?.setOnClickListener(this)
         scanBtn?.setOnClickListener{ scanData() }
 
-        vgsForm.onResponseListener = this
+        vgsForm.addOnResponseListeners(this)
 
         vgsForm.addOnFieldStateChangeListener(getOnFieldStateChangeListener())
 
@@ -52,9 +53,43 @@ class MainActivity : AppCompatActivity(), VgsCollectResponseListener, View.OnCli
     override fun onClick(v: View?) {
         progressBar?.visibility = View.VISIBLE
         when (v?.id) {
-            R.id.submitBtn -> vgsForm.asyncSubmit(this@MainActivity, "/post", HTTPMethod.POST)
+            R.id.submitBtn -> submitData()
             R.id.scanBtn -> scanData()
         }
+    }
+
+    private fun submitData() {
+        hideKeyboard(this)
+        val customData = generateCustomData()
+        val customHeaders = generateCustomHeaders()
+
+        val request: VGSRequest = VGSRequest.VGSRequestBuilder()
+            .setMethod(HTTPMethod.POST)
+            .setPath("/post")
+            .setCustomHeader(customHeaders)
+            .setCustomData(customData)
+            .build()
+
+        vgsForm.asyncSubmit(this@MainActivity, request)
+    }
+
+    private fun generateCustomHeaders():HashMap<String, String> {
+        val headers = HashMap<String, String>()
+        headers["some-headers"] = "custom-header"
+
+        return headers
+    }
+
+    private fun generateCustomData():HashMap<String, Any> {
+        val customData = HashMap<String, Any>()
+
+        val account = HashMap<String, Any>()
+        account["id"] = 8485747
+        account["username"] = "Grisha"
+
+        customData["account"] = account
+
+        return customData
     }
 
     private fun scanData() {
