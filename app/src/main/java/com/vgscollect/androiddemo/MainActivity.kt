@@ -3,13 +3,15 @@ package com.vgscollect.androiddemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.verygoodsecurity.api.cardio.ScanActivity
+import com.verygoodsecurity.vgscollect.core.Environment
 import com.verygoodsecurity.vgscollect.core.HTTPMethod
 import com.verygoodsecurity.vgscollect.core.VGSCollect
 import com.verygoodsecurity.vgscollect.core.VgsCollectResponseListener
-import com.verygoodsecurity.vgscollect.core.model.VGSRequest
-import com.verygoodsecurity.vgscollect.core.model.VGSResponse
+import com.verygoodsecurity.vgscollect.core.model.network.VGSRequest
+import com.verygoodsecurity.vgscollect.core.model.network.VGSResponse
 import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,14 +23,17 @@ class MainActivity : AppCompatActivity(), VgsCollectResponseListener, View.OnCli
         const val USER_SCAN_REQUEST_CODE = 0x7
     }
 
-    private val vgsForm = VGSCollect("tntstwggghg")
+    private lateinit var vgsForm:VGSCollect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        vgsForm = VGSCollect(this, "tntstwggghg", Environment.SANDBOX)
+
         submitBtn?.setOnClickListener(this)
-        scanBtn?.setOnClickListener{ scanData() }
+        attachFileBtn?.setOnClickListener(this)
+        scanBtn?.setOnClickListener(this)
 
         vgsForm.addOnResponseListeners(this)
 
@@ -51,14 +56,19 @@ class MainActivity : AppCompatActivity(), VgsCollectResponseListener, View.OnCli
     }
 
     override fun onClick(v: View?) {
-        progressBar?.visibility = View.VISIBLE
         when (v?.id) {
             R.id.submitBtn -> submitData()
+            R.id.attachFileBtn -> attachFile()
             R.id.scanBtn -> scanData()
         }
     }
 
+    private fun attachFile() {
+        vgsForm.getFileProvider().attachFile("attachments.file")
+    }
+
     private fun submitData() {
+        progressBar?.visibility = View.VISIBLE
         hideKeyboard(this)
         val customData = generateCustomData()
         val customHeaders = generateCustomHeaders()
@@ -70,7 +80,7 @@ class MainActivity : AppCompatActivity(), VgsCollectResponseListener, View.OnCli
             .setCustomData(customData)
             .build()
 
-        vgsForm.asyncSubmit(this@MainActivity, request)
+        vgsForm.asyncSubmit(request)
     }
 
     private fun generateCustomHeaders():HashMap<String, String> {
@@ -139,12 +149,11 @@ class MainActivity : AppCompatActivity(), VgsCollectResponseListener, View.OnCli
         titleHeader?.text = "RESPONSE:"
         when (response) {
             is VGSResponse.SuccessResponse -> {
-                val builder = StringBuilder("CODE: ")
-                    .append(response.code.toString()).append("\n\n")
-                response.response?.forEach {
-                    builder.append(it.key).append(": ").append(it.value).append("\n\n")
-                }
-                responseView.text = builder.toString()
+                Log.e("test", "${response.rawResponse}")
+
+                val str = StringBuilder("CODE: ")
+                    .append(response.code.toString()).toString()
+                responseView.text = str
             }
             is VGSResponse.ErrorResponse -> responseView.text =
                 "CODE: ${response.errorCode} \n\n ${response.localizeMessage}"

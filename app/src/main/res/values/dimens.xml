@@ -2,4 +2,5 @@
 <resources>
     <dimen name="default_margin">16dp</dimen>
     <dimen name="half_default_margin">8dp</dimen>
+    <dimen name="button_size">48dp</dimen>
 </resources>

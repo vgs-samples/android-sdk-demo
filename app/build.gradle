@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.vgscollect.androiddemo"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -27,6 +27,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
 
-    implementation 'com.verygoodsecurity:vgscollect:1.0.9'
+    implementation 'com.verygoodsecurity:vgscollect:1.1.0'
     implementation 'com.verygoodsecurity:adapter-cardio:1.0.0'
 }
