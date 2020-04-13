@@ -138,6 +138,7 @@
                                     app:numberDivider=" "
                                     app:text="4111222233334444555"
                                     android:nextFocusDown="@+id/cardHolderField"
+                                    app:imeOptions="actionNext"
                                     app:cardBrandIconGravity="end"/>
                             </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
@@ -158,6 +159,7 @@
                                     android:layout_height="match_parent"
                                     style="@style/AppTheme.PaymentField"
                                     android:nextFocusDown="@+id/cardExpDateField"
+                                    app:imeOptions="actionNext"
                                     app:fieldName="card_data.personal_data.cardHolder"
                                     app:fieldType="cardHolderName"
                                     app:text="John Galt"/>
@@ -182,6 +184,7 @@
                                     style="@style/AppTheme.PaymentField"
                                     app:fieldName="card_data.personal_data.secret.expDate"
                                     android:nextFocusDown="@+id/cardCVCField"
+                                    app:imeOptions="actionNext"
                                     app:datePickerModes="input"
                                     app:text="12/26"
                                     app:datePattern="MM/yy"/>
@@ -205,6 +208,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     style="@style/AppTheme.PaymentField"
+                                    app:imeOptions="actionDone"
                                     app:fieldName="card_data.cardCvc"
                                     app:text="123"
                                     app:fieldType="cvc"/>
