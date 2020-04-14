@@ -28,7 +28,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         const val USER_SCAN_REQUEST_CODE = 0x7
 
         private const val VAULT_ID = "tntstwggghg"
-        private val ENVIROMENT = Environment.SANDBOX
+        private val ENVIRONMENT = Environment.SANDBOX
         private const val PATH = "/post"
     }
 
@@ -38,7 +38,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        vgsForm = VGSCollect(this, VAULT_ID, ENVIROMENT)
+        vgsForm = VGSCollect(this, VAULT_ID, ENVIRONMENT)
 
         submitBtn?.setOnClickListener(this)
         attachBtn?.setOnClickListener(this)
