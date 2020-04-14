@@ -182,9 +182,11 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
     private fun setEnabledResponseHeader(isEnabled:Boolean) {
         if(isEnabled) {
             attachBtn.setTextColor(ContextCompat.getColor(this, R.color.state_active))
+            responseTitleView.setTextColor(ContextCompat.getColor(this, R.color.state_active))
         } else {
             responseContainerView.text = ""
             attachBtn.setTextColor(ContextCompat.getColor(this, R.color.state_unactive))
+            responseTitleView.setTextColor(ContextCompat.getColor(this, R.color.state_unactive))
         }
     }
 
