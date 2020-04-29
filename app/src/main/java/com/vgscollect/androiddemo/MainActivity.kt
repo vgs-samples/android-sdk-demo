@@ -18,6 +18,7 @@ import com.verygoodsecurity.vgscollect.core.model.network.VGSResponse
 import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
 import com.verygoodsecurity.vgscollect.view.card.CardType
+import com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.StringBuilder
 
@@ -30,10 +31,6 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         private val ENVIRONMENT = Environment.SANDBOX
         private const val PATH = "/post"
     }
-
-    private lateinit var vault_id:String
-    private lateinit var path:String
-    private lateinit var env:Environment
 
     private lateinit var vgsForm: VGSCollect
 
@@ -98,13 +95,29 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
             override fun onStateChange(state: FieldState) {
                 when(state) {
                     is FieldState.CardNumberState -> handleCardNumberState(state)
+                    is FieldState.CardExpirationDateState -> showErrorIfNotValidInput(cardExpDateFieldLay, state)
+                    is FieldState.CardHolderNameState -> showErrorIfNotValidInput(cardHolderFieldLay, state)
+                    is FieldState.CVCState -> showErrorIfNotValidInput(cardCVCFieldLay, state)
                 }
                 refreshAllStates()
             }
         }
     }
 
+    private fun showErrorIfNotValidInput(
+        layout: VGSTextInputLayout?,
+        state: FieldState
+    ) {
+        if(!state.isValid && !state.hasFocus && !state.isEmpty) {
+            layout?.setError(getString(R.string.error_is_not_valid))
+        } else {
+            layout?.setError(null)
+        }
+    }
+
     private fun handleCardNumberState(state: FieldState.CardNumberState) {
+        showErrorIfNotValidInput(cardNumberFieldLay, state)
+
         previewCardNumber?.text = state.number
         if(state.cardBrand == CardType.VISA.name) {
             previewCardBrand?.setImageResource(R.drawable.ic_custom_visa)

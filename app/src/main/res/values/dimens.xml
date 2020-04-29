@@ -6,12 +6,13 @@
 
 
     <dimen name="collect_activity_cards_title_text_size">20dp</dimen>
+    <dimen name="field_wrapper_height">52dp</dimen>
 
     <dimen name="preview_holder_name_text_size">16dp</dimen>
     <dimen name="preview_card_horizontal_padding">40dp</dimen>
     <dimen name="preview_card_vertical_padding">27dp</dimen>
 
-    <dimen name="payment_card_vertical_margin">20dp</dimen>
+    <dimen name="payment_card_horizontal_margin">20dp</dimen>
 
     <dimen name="payment_card_horizontal_padding">20dp</dimen>
     <dimen name="payment_card_vertical_padding">20dp</dimen>
