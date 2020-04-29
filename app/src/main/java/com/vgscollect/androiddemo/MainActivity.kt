@@ -3,7 +3,6 @@ package com.vgscollect.androiddemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -32,6 +31,10 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         private const val PATH = "/post"
     }
 
+    private lateinit var vault_id:String
+    private lateinit var path:String
+    private lateinit var env:Environment
+
     private lateinit var vgsForm: VGSCollect
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +53,14 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         vgsForm.bindView(cardCVCField)
         vgsForm.bindView(cardHolderField)
         vgsForm.bindView(cardExpDateField)
+
+        attachStaticData()
+    }
+
+    private fun attachStaticData() {
+        val staticData = mutableMapOf<String, String>()
+        staticData["static_data"] = "static custom data"
+        vgsForm.setCustomData(staticData)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -106,19 +117,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         val states = vgsForm.getAllStates()
         val builder = StringBuilder()
         states.forEach {
-            builder.append(it.fieldName).append("\n")
-                .append("   hasFocus: ").append(it.hasFocus).append("\n")
-                .append("   isValid: ").append(it.isValid).append("\n")
-                .append("   isEmpty: ").append(it.isEmpty).append("\n")
-                .append("   isRequired: ").append(it.isRequired).append("\n")
-            if (it is FieldState.CardNumberState) {
-                builder.append("    type: ").append(it.cardBrand).append("\n")
-                    .append("       end: ").append(it.last).append("\n")
-                    .append("       bin: ").append(it.bin).append("\n")
-                    .append(it.number).append("\n")
-            }
-
-            builder.append("\n")
+            builder.append(it.toString()).append("\n\n")
         }
         stateContainerView?.text = builder.toString()
     }
@@ -148,22 +147,9 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
 
         when (response) {
             is VGSResponse.SuccessResponse -> {
-                val builder = StringBuilder("CODE: ")
-                    .append(response.code.toString())
-                    .append("\n\n")
-
-                if(response.response.isNullOrEmpty()) {
-                    builder.append(response.rawResponse)
-                    Log.e("test", "${response.rawResponse}")
-                } else {
-                    val json = (response.response?.get("response") as? Map<*, *>)?.get("json")
-                    builder.append(json)
-                }
-
-                responseContainerView.text = builder.toString()
+                responseContainerView.text = response.toString()
             }
-            is VGSResponse.ErrorResponse -> responseContainerView.text =
-                "CODE: ${response.errorCode} \n\n ${response.localizeMessage}"
+            is VGSResponse.ErrorResponse -> responseContainerView.text = response.toString()
         }
     }
 
@@ -205,7 +191,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         customData["nickname"] = "Taras"
 
         val headers = HashMap<String, String>()
-        headers["some-headers"] = "custom-header"
+        headers["some-headers"] = "dynamic-header"
 
         val request: VGSRequest = VGSRequest.VGSRequestBuilder()
             .setMethod(HTTPMethod.POST)
