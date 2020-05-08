@@ -200,6 +200,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         style="@style/AppTheme.PaymentField"
+                                        app:outputPattern="yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"
                                         app:fieldName="card_data.personal_data.secret.expDate"
                                         android:nextFocusDown="@+id/cardCVCField"
                                         app:imeOptions="actionNext"
