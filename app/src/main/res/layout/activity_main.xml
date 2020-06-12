@@ -166,15 +166,14 @@
                                     app:hint="@string/card_holder"
                                     app:boxBackgroundModes="outline"
                                     app:boxStrokeColor="@color/colorAccent">
-                                    <com.verygoodsecurity.vgscollect.widget.VGSEditText
+                                    <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
                                         android:id="@+id/cardHolderField"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         style="@style/AppTheme.PaymentField"
                                         android:nextFocusDown="@+id/cardExpDateField"
                                         app:imeOptions="actionNext"
-                                        app:fieldName="card_data.personal_data.cardHolder"
-                                        app:fieldType="cardHolderName"/>
+                                        app:fieldName="card_data.personal_data.cardHolder"/>
                                 </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
                             </FrameLayout>
 
@@ -230,14 +229,13 @@
                                     app:hint="@string/cvc"
                                     app:boxBackgroundModes="outline"
                                     app:boxStrokeColor="@color/colorAccent">
-                                    <com.verygoodsecurity.vgscollect.widget.VGSEditText
+                                    <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
                                         android:id="@+id/cardCVCField"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         style="@style/AppTheme.PaymentField"
                                         app:imeOptions="actionDone"
-                                        app:fieldName="card_data.cardCvc"
-                                        app:fieldType="cvc"/>
+                                        app:fieldName="card_data.cardCvc"/>
                                 </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
                             </FrameLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>

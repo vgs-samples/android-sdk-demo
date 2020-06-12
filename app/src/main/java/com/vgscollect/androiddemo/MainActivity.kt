@@ -18,6 +18,8 @@ import com.verygoodsecurity.vgscollect.core.model.network.VGSResponse
 import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
 import com.verygoodsecurity.vgscollect.view.card.CardType
+import com.verygoodsecurity.vgscollect.view.card.CustomCardBrand
+import com.verygoodsecurity.vgscollect.view.card.icon.CardIconAdapter
 import com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.StringBuilder
@@ -33,12 +35,15 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
     }
 
     private lateinit var vgsForm: VGSCollect
+    private val maskAdapter = MaskAdapter()
+    private lateinit var iconAdapter:IconAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         vgsForm = VGSCollect(this, VAULT_ID, ENVIRONMENT)
+        iconAdapter = IconAdapter(this)
 
         submitBtn?.setOnClickListener(this)
         attachBtn?.setOnClickListener(this)
@@ -47,11 +52,29 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         vgsForm.addOnFieldStateChangeListener(getOnFieldStateChangeListener())
 
         vgsForm.bindView(cardNumberField)
+        setupAdapters()
+        addCustomBrand()
+
         vgsForm.bindView(cardCVCField)
         vgsForm.bindView(cardHolderField)
         vgsForm.bindView(cardExpDateField)
 
         attachStaticData()
+    }
+
+    private fun addCustomBrand() {
+        val c = CustomCardBrand(
+            "^47712",
+            "TEst Visa",
+            R.drawable.ic_visa_dark,
+            "### ## ####### ####"
+        )
+        cardNumberField?.addCardBrand(c)
+    }
+
+    private fun setupAdapters() {
+        cardNumberField?.setCardMaskAdapter(maskAdapter)
+        cardNumberField?.setCardIconAdapter(iconAdapter)
     }
 
     private fun attachStaticData() {
