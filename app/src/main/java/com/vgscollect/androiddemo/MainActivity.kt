@@ -3,6 +3,7 @@ package com.vgscollect.androiddemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -19,7 +20,6 @@ import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
 import com.verygoodsecurity.vgscollect.view.card.CardType
 import com.verygoodsecurity.vgscollect.view.card.CustomCardBrand
-import com.verygoodsecurity.vgscollect.view.card.icon.CardIconAdapter
 import com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.StringBuilder
@@ -51,15 +51,67 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         vgsForm.addOnResponseListeners(this)
         vgsForm.addOnFieldStateChangeListener(getOnFieldStateChangeListener())
 
+        setupCardNumberField()
+        setupCVCField()
+        setupCardHolderField()
+        setupCardExpDateField()
+
+        attachStaticData()
+    }
+
+    private fun setupCardExpDateField() {
+        vgsForm.bindView(cardExpDateField)
+        cardExpDateField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+            override fun onStateChange(state: FieldState) {
+                Log.e("card_exp", "$state \n\n ${cardExpDateField.getState()} ")
+                if(!state.isEmpty && !state.isValid && !state.hasFocus) {
+                    cardExpDateFieldLay?.setError("fill it please")
+                } else {
+                    cardExpDateFieldLay?.setError(null)
+                }
+            }
+        })
+    }
+
+    private fun setupCardHolderField() {
+        vgsForm.bindView(cardHolderField)
+        cardHolderField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+            override fun onStateChange(state: FieldState) {
+                Log.e("card_holder", "$state \n\n ${cardHolderField.getState()} ")
+                if(!state.isEmpty && !state.isValid && !state.hasFocus) {
+                    cardHolderFieldLay?.setError("fill it please")
+                } else {
+                    cardHolderFieldLay?.setError(null)
+                }
+            }
+        })
+    }
+
+    private fun setupCVCField() {
+        vgsForm.bindView(cardCVCField)
+        cardCVCField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+            override fun onStateChange(state: FieldState) {
+                Log.e("card_cvc", "$state \n\n ${cardCVCField.getState()} ")
+                if(!state.isEmpty && !state.isValid && !state.hasFocus) {
+                    cardCVCFieldLay?.setError("fill it please")
+                } else {
+                    cardCVCFieldLay?.setError(null)
+                }
+            }
+        })
+    }
+
+    private fun setupCardNumberField() {
         vgsForm.bindView(cardNumberField)
         setupAdapters()
         addCustomBrand()
 
-        vgsForm.bindView(cardCVCField)
-        vgsForm.bindView(cardHolderField)
-        vgsForm.bindView(cardExpDateField)
 
-        attachStaticData()
+        cardNumberField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+            override fun onStateChange(state: FieldState) {
+                Log.e("card_number", "$state \n\n ${cardNumberField.getState()} ")
+            }
+        })
     }
 
     private fun addCustomBrand() {
@@ -116,6 +168,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
     private fun getOnFieldStateChangeListener(): OnFieldStateChangeListener {
         return object : OnFieldStateChangeListener {
             override fun onStateChange(state: FieldState) {
+                Log.e("vgs_collect_state", "$state ")
                 when(state) {
                     is FieldState.CardNumberState -> handleCardNumberState(state)
                     is FieldState.CardExpirationDateState -> showErrorIfNotValidInput(cardExpDateFieldLay, state)
