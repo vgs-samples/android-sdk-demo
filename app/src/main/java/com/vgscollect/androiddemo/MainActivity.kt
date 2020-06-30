@@ -18,8 +18,11 @@ import com.verygoodsecurity.vgscollect.core.model.network.VGSRequest
 import com.verygoodsecurity.vgscollect.core.model.network.VGSResponse
 import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
+import com.verygoodsecurity.vgscollect.view.card.BrandParams
 import com.verygoodsecurity.vgscollect.view.card.CardType
+import com.verygoodsecurity.vgscollect.view.card.ChecksumAlgorithm
 import com.verygoodsecurity.vgscollect.view.card.CustomCardBrand
+import com.verygoodsecurity.vgscollect.view.card.validation.payment.PersonNameRule
 import com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.StringBuilder
@@ -74,6 +77,14 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
     }
 
     private fun setupCardHolderField() {
+        val rule : PersonNameRule = PersonNameRule.ValidationBuilder()
+            .setRegex("^([a-zA-Z]{2,}\\s[a-zA-z]{1,})\$")
+            .setAllowableMinLength(3)
+            .setAllowableMaxLength(7)
+            .build()
+
+        cardHolderField.addRule(rule)
+
         vgsForm.bindView(cardHolderField)
         cardHolderField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
             override fun onStateChange(state: FieldState) {
@@ -115,11 +126,15 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
     }
 
     private fun addCustomBrand() {
+        val params = BrandParams(
+            "### ## ####### ####",
+            ChecksumAlgorithm.LUHN
+        )
         val c = CustomCardBrand(
             "^47712",
             "TEst Visa",
             R.drawable.ic_visa_dark,
-            "### ## ####### ####"
+            params
         )
         cardNumberField?.addCardBrand(c)
     }
