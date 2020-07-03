@@ -19,10 +19,11 @@ import com.verygoodsecurity.vgscollect.core.model.network.VGSResponse
 import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
 import com.verygoodsecurity.vgscollect.view.card.BrandParams
+import com.verygoodsecurity.vgscollect.view.card.CardBrand
 import com.verygoodsecurity.vgscollect.view.card.CardType
-import com.verygoodsecurity.vgscollect.view.card.ChecksumAlgorithm
-import com.verygoodsecurity.vgscollect.view.card.CustomCardBrand
-import com.verygoodsecurity.vgscollect.view.card.validation.payment.PersonNameRule
+import com.verygoodsecurity.vgscollect.view.card.validation.payment.ChecksumAlgorithm
+import com.verygoodsecurity.vgscollect.view.card.validation.rules.PaymentCardNumberRule
+import com.verygoodsecurity.vgscollect.view.card.validation.rules.PersonNameRule
 import com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.StringBuilder
@@ -116,6 +117,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         vgsForm.bindView(cardNumberField)
         setupAdapters()
         addCustomBrand()
+        setupDefaultValidationRules()
 
 
         cardNumberField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
@@ -125,14 +127,25 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         })
     }
 
+    private fun setupDefaultValidationRules() {
+        val rule : PaymentCardNumberRule = PaymentCardNumberRule.ValidationBuilder()
+            .setAlgorithm(ChecksumAlgorithm.LUHN)
+            .setAllowableNumberLength(arrayOf(15, 16, 19))
+            .build()
+
+        cardNumberField.addRule(rule)
+    }
+
     private fun addCustomBrand() {
         val params = BrandParams(
-            "### ## ####### ####",
-            ChecksumAlgorithm.LUHN
+            "### ### ### ###",
+            ChecksumAlgorithm.LUHN,
+            arrayOf(4, 10, 12),
+            arrayOf(3, 5)
         )
-        val c = CustomCardBrand(
+        val c = CardBrand(
             "^47712",
-            "TEst Visa",
+            "Internal Visa",
             R.drawable.ic_visa_dark,
             params
         )
