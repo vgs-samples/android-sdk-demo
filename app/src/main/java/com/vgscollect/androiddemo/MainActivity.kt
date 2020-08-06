@@ -1,6 +1,7 @@
 package com.vgscollect.androiddemo
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -189,6 +190,12 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         }
 
         intent.putExtra(ScanActivity.SCAN_CONFIGURATION, scanSettings)
+
+
+        intent.putExtra(ScanActivity.EXTRA_GUIDE_COLOR, Color.YELLOW)
+        intent.putExtra(ScanActivity.EXTRA_LANGUAGE_OR_LOCALE, "en")
+        intent.putExtra(ScanActivity.EXTRA_SCAN_INSTRUCTIONS, "Scanning payment card")
+
 
         startActivityForResult(intent, USER_SCAN_REQUEST_CODE)
     }
