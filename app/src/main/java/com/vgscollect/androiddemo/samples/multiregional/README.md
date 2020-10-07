@@ -1,10 +1,10 @@
-# SSN Field Sample
+# Payment Card Number Field Sample
 
-This sample of Activity demonstrates how to use SSN field.
+This sample of Activity shows you how to support different regions(EU, US, etc.).
 
 ## Prerequisites
 
-- VGS Collect SDK v.1.2.5
+- VGS Collect SDK v.1.2.1
 - Android SDK 19
 
 ## Support
