@@ -1,4 +1,4 @@
-# Payment Card Number Field Sample
+# Multiregional Support Sample
 
 This sample of Activity shows you how to support different regions(EU, US, etc.).
 
