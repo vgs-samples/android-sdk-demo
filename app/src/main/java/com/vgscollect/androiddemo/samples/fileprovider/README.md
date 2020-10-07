@@ -9,4 +9,4 @@ This sample of Activity demonstrates how to use manage different files in VGS Co
 
 ## Support
 
-If you've found an error in this sample, please submit an issue or write on email: support@verygoodsecurity.com.
+If you've found an error in this sample, plea   se submit an issue or write on email: support@verygoodsecurity.com.

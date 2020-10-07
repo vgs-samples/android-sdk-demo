@@ -8,13 +8,17 @@
     android:padding="@dimen/default_padding"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.verygoodsecurity.vgscollect.widget.SSNEditText
-        android:id="@+id/ssnFromLayout"
+    <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
+        android:id="@+id/cardNumberFromLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
         android:layout_marginBottom="@dimen/default_padding"
-        app:fieldName="ssn_field_name"
-        app:hint="ssn"/>
+        app:fieldName="card_number_field_name"
+        app:numberDivider="-"
+        app:enableValidation="true"
+        app:cardBrandIconGravity="end"
+        app:validationRule="acceptUnknown"
+        app:hint="cardNumber"/>
 
 </LinearLayout>
