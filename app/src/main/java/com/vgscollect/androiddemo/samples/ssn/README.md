@@ -1,6 +1,6 @@
 # SSN Field Sample
 
-This sample demonstrates how to use SSN field..
+This sample demonstrates how to use SSN field.
 
 
 ## Prerequisites
