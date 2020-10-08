@@ -119,7 +119,6 @@ class PaymentCardNumberActivity : AppCompatActivity() {
         cardNumber2.addRule(rule)
     }
 
-
     fun manageField() {
         // field allows you to retrieve current its state.
         val state: FieldState.CardNumberState? = cardNumber2.getState()
@@ -136,6 +135,7 @@ class PaymentCardNumberActivity : AppCompatActivity() {
 
         cardNumber2.setFieldName("<fieldName>")
 
+        //Set divider programmatically
         cardNumber2.setDivider('-')
 
     }
