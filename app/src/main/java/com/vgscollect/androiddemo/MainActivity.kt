@@ -1,7 +1,6 @@
 package com.vgscollect.androiddemo
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.verygoodsecurity.api.cardio.ScanActivity
+import com.verygoodsecurity.api.bouncer.ScanActivity
 import com.verygoodsecurity.vgscollect.core.Environment
 import com.verygoodsecurity.vgscollect.core.HTTPMethod
 import com.verygoodsecurity.vgscollect.core.VGSCollect
@@ -189,12 +188,15 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
             }
             putSerializable(ScanActivity.SCAN_CONFIGURATION, scanSettings)
 
-            putInt(ScanActivity.EXTRA_GUIDE_COLOR, Color.WHITE)
-            putBoolean(ScanActivity.EXTRA_REQUIRE_POSTAL_CODE, true)
-            putBoolean(ScanActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, false)
-            putBoolean(ScanActivity.EXTRA_SUPPRESS_CONFIRMATION, false)
-            putString(ScanActivity.EXTRA_LANGUAGE_OR_LOCALE, "en")
-            putString(ScanActivity.EXTRA_SCAN_INSTRUCTIONS, "Scanning payment card")
+            putString(ScanActivity.API_KEY, "<bouncer-api-key>")
+
+            putBoolean(ScanActivity.ENABLE_EXPIRY_EXTRACTION, false)
+            putBoolean(ScanActivity.ENABLE_NAME_EXTRACTION, false)
+            putBoolean(ScanActivity.DISPLAY_CARD_PAN, false)
+            putBoolean(ScanActivity.DISPLAY_CARD_HOLDER_NAME, false)
+            putBoolean(ScanActivity.DISPLAY_CARD_SCAN_LOGO, false)
+            putBoolean(ScanActivity.ENABLE_DEBUG, false)
+
             this
         }
 
