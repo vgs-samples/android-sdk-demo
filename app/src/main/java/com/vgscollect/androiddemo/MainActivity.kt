@@ -192,10 +192,6 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
 
             putBoolean(ScanActivity.ENABLE_EXPIRY_EXTRACTION, false)
             putBoolean(ScanActivity.ENABLE_NAME_EXTRACTION, false)
-            putBoolean(ScanActivity.DISPLAY_CARD_PAN, false)
-            putBoolean(ScanActivity.DISPLAY_CARD_HOLDER_NAME, false)
-            putBoolean(ScanActivity.DISPLAY_CARD_SCAN_LOGO, false)
-            putBoolean(ScanActivity.ENABLE_DEBUG, false)
 
             this
         }

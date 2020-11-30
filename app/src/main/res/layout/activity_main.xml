@@ -204,7 +204,7 @@
                                         android:nextFocusDown="@+id/cardCVCField"
                                         app:imeOptions="actionNext"
                                         app:datePickerModes="input"
-                                        app:formatterMode="flexible"
+                                        app:formatterMode="strict"
                                         app:datePattern="MM/yy"/>
                                 </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
                             </FrameLayout>
