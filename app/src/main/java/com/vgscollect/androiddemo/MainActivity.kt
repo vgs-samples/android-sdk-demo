@@ -79,7 +79,6 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
 
     private fun setupCardHolderField() {
         val rule : PersonNameRule = PersonNameRule.ValidationBuilder()
-            .setRegex("^([a-zA-Z]{2,}\\s[a-zA-z]{1,})\$")
             .setAllowableMinLength(3)
             .setAllowableMaxLength(7)
             .build()
@@ -270,7 +269,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
 
         when (response) {
             is VGSResponse.SuccessResponse -> {
-                responseContainerView.text = response.toString()
+                responseContainerView.text = "Code: ${response.successCode}"
             }
             is VGSResponse.ErrorResponse -> responseContainerView.text = response.toString()
         }
