@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.verygoodsecurity.api.bouncer.ScanActivity
 import com.verygoodsecurity.vgscollect.core.Environment
@@ -24,35 +24,108 @@ import com.verygoodsecurity.vgscollect.view.card.CardType
 import com.verygoodsecurity.vgscollect.view.card.validation.payment.ChecksumAlgorithm
 import com.verygoodsecurity.vgscollect.view.card.validation.rules.PaymentCardNumberRule
 import com.verygoodsecurity.vgscollect.view.card.validation.rules.PersonNameRule
-import com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+import com.verygoodsecurity.vgscollect.widget.*
+import com.verygoodsecurity.vgsshow.VGSShow
+import com.verygoodsecurity.vgsshow.core.VGSEnvironment
+import com.verygoodsecurity.vgsshow.core.listener.VGSOnResponseListener
+import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
+import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONException
+import org.json.JSONObject
 import java.lang.StringBuilder
 
-class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClickListener  {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val USER_SCAN_REQUEST_CODE = 0x7
 
-        private const val VAULT_ID = "tntstwggghg"
+        private const val VAULT_ID = "tntpszqgikn"
         private val ENVIRONMENT = Environment.SANDBOX
         private const val PATH = "/post"
     }
 
-    private lateinit var vgsForm: VGSCollect
+
+    private val vgsForm: VGSCollect by lazy {
+        VGSCollect.Builder(this, VAULT_ID)
+            .setEnvironment(ENVIRONMENT)
+            .create()
+    }
+
+    private val vgsShow: VGSShow by lazy {
+        VGSShow(this, VAULT_ID, VGSEnvironment.Sandbox())
+    }
+
     private val maskAdapter = MaskAdapter()
-    private lateinit var iconAdapter:IconAdapter
+    private lateinit var iconAdapter: IconAdapter
+
+    // general controls
+    private val dateToken: TextView? by lazy { findViewById(R.id.dateToken) }
+    private val numberToken: TextView? by lazy { findViewById(R.id.numberToken) }
+    private val previewCardNumber: TextView? by lazy { findViewById(R.id.previewCardNumber) }
+    private val previewCardBrand: ImageView? by lazy { findViewById(R.id.previewCardBrand) }
+
+
+    // Collect SDK controls
+    private val cardNumberField: VGSCardNumberEditText? by lazy { findViewById(R.id.cardNumberField) }
+    private val cardNumberFieldLay: VGSTextInputLayout? by lazy { findViewById(R.id.cardNumberFieldLay) }
+
+    private val cardHolderField: PersonNameEditText? by lazy { findViewById(R.id.cardHolderField) }
+    private val cardHolderFieldLay: VGSTextInputLayout? by lazy { findViewById(R.id.cardHolderFieldLay) }
+
+    private val cardCVCField: CardVerificationCodeEditText? by lazy { findViewById(R.id.cardCVCField) }
+    private val cardCVCFieldLay: VGSTextInputLayout? by lazy { findViewById(R.id.cardCVCFieldLay) }
+
+    private val cardExpDateField: ExpirationDateEditText? by lazy { findViewById(R.id.cardExpDateField) }
+    private val cardExpDateFieldLay: VGSTextInputLayout? by lazy { findViewById(R.id.cardExpDateFieldLay) }
+
+
+    //Show SDK controls
+    private val revealedNumber: VGSTextView? by lazy { findViewById(R.id.revealedNumber) }
+    private val revealedExpirationDate: VGSTextView? by lazy { findViewById(R.id.revealedExpirationDate) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        vgsForm = VGSCollect(this, VAULT_ID, ENVIRONMENT)
+        setupCollect()
+        setupShow()
+    }
+
+    private fun setupCollect() {
         iconAdapter = IconAdapter(this)
 
         submitBtn?.setOnClickListener(this)
+        revealBtn?.setOnClickListener(this)
         attachBtn?.setOnClickListener(this)
 
-        vgsForm.addOnResponseListeners(this)
+        vgsForm.addOnResponseListeners(object : VgsCollectResponseListener {
+            override fun onResponse(response: VGSResponse?) {
+                setEnabledResponseHeader(true)
+                setStateLoading(false)
+
+                when (response) {
+                    is VGSResponse.SuccessResponse -> {
+                        responseContainerView.text =
+                            "Collect Response Code: \n ${response.successCode}"
+
+                        try {
+                            val json = when (response) {
+                                is CollectSuccessResponse -> JSONObject(response?.rawResponse)
+                                else -> null
+                            }
+
+                            parseNumberAlias(json)
+                            parseDateAlias(json)
+                        } catch (e: JSONException) {
+                        }
+                    }
+                    is VGSResponse.ErrorResponse -> responseContainerView.text = response.toString()
+                }
+            }
+        })
+
         vgsForm.addOnFieldStateChangeListener(getOnFieldStateChangeListener())
 
         setupCardNumberField()
@@ -65,74 +138,87 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
 
     private fun setupCardExpDateField() {
         vgsForm.bindView(cardExpDateField)
-        cardExpDateField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
-            override fun onStateChange(state: FieldState) {
-                Log.e("card_exp", "$state \n\n ${cardExpDateField.getState()} ")
-                if(!state.isEmpty && !state.isValid && !state.hasFocus) {
-                    cardExpDateFieldLay?.setError("fill it please")
-                } else {
-                    cardExpDateFieldLay?.setError(null)
+
+        cardExpDateField?.apply {
+            setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+                override fun onStateChange(state: FieldState) {
+                    Log.e("card_exp", "$state \n\n ${getState()} ")
+                    if (!state.isEmpty && !state.isValid && !state.hasFocus) {
+                        cardExpDateFieldLay?.setError("fill it please")
+                    } else {
+                        cardExpDateFieldLay?.setError(null)
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     private fun setupCardHolderField() {
-        val rule : PersonNameRule = PersonNameRule.ValidationBuilder()
+        val rule: PersonNameRule = PersonNameRule.ValidationBuilder()
             .setAllowableMinLength(3)
             .setAllowableMaxLength(7)
             .build()
 
-        cardHolderField.addRule(rule)
+        cardHolderField?.apply {
+            addRule(rule)
+
+            setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+                override fun onStateChange(state: FieldState) {
+                    Log.e("card_holder", "$state \n\n ${getState()} ")
+                    if (!state.isEmpty && !state.isValid && !state.hasFocus) {
+                        cardHolderFieldLay?.setError("fill it please")
+                    } else {
+                        cardHolderFieldLay?.setError(null)
+                    }
+                }
+            })
+        }
+
 
         vgsForm.bindView(cardHolderField)
-        cardHolderField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
-            override fun onStateChange(state: FieldState) {
-                Log.e("card_holder", "$state \n\n ${cardHolderField.getState()} ")
-                if(!state.isEmpty && !state.isValid && !state.hasFocus) {
-                    cardHolderFieldLay?.setError("fill it please")
-                } else {
-                    cardHolderFieldLay?.setError(null)
-                }
-            }
-        })
+
     }
 
     private fun setupCVCField() {
-        vgsForm.bindView(cardCVCField)
-        cardCVCField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
-            override fun onStateChange(state: FieldState) {
-                Log.e("card_cvc", "$state \n\n ${cardCVCField.getState()} ")
-                if(!state.isEmpty && !state.isValid && !state.hasFocus) {
-                    cardCVCFieldLay?.setError("fill it please")
-                } else {
-                    cardCVCFieldLay?.setError(null)
+        cardCVCField?.apply {
+            setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+                override fun onStateChange(state: FieldState) {
+                    Log.e("card_cvc", "$state \n\n ${getState()} ")
+                    if (!state.isEmpty && !state.isValid && !state.hasFocus) {
+                        cardCVCFieldLay?.setError("fill it please")
+                    } else {
+                        cardCVCFieldLay?.setError(null)
+                    }
                 }
-            }
-        })
+            })
+        }
+
+        vgsForm.bindView(cardCVCField)
     }
 
     private fun setupCardNumberField() {
-        vgsForm.bindView(cardNumberField)
         setupAdapters()
         addCustomBrand()
         setupDefaultValidationRules()
 
+        cardNumberField?.apply {
+            setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+                override fun onStateChange(state: FieldState) {
+                    Log.e("card_number", "$state \n\n ${getState()} ")
+                }
+            })
+        }
 
-        cardNumberField?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
-            override fun onStateChange(state: FieldState) {
-                Log.e("card_number", "$state \n\n ${cardNumberField.getState()} ")
-            }
-        })
+        vgsForm.bindView(cardNumberField)
     }
 
     private fun setupDefaultValidationRules() {
-        val rule : PaymentCardNumberRule = PaymentCardNumberRule.ValidationBuilder()
+        val rule: PaymentCardNumberRule = PaymentCardNumberRule.ValidationBuilder()
             .setAlgorithm(ChecksumAlgorithm.LUHN)
             .setAllowableNumberLength(arrayOf(15, 16, 19))
             .build()
 
-        cardNumberField.addRule(rule)
+        cardNumberField?.addRule(rule)
     }
 
     private fun addCustomBrand() {
@@ -169,7 +255,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if(item.itemId == R.id.scan_card) {
+        return if (item.itemId == R.id.scan_card) {
             scanCard()
             true
         } else {
@@ -202,10 +288,16 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         return object : OnFieldStateChangeListener {
             override fun onStateChange(state: FieldState) {
                 Log.e("vgs_collect_state", "$state ")
-                when(state) {
+                when (state) {
                     is FieldState.CardNumberState -> handleCardNumberState(state)
-                    is FieldState.CardExpirationDateState -> showErrorIfNotValidInput(cardExpDateFieldLay, state)
-                    is FieldState.CardHolderNameState -> showErrorIfNotValidInput(cardHolderFieldLay, state)
+                    is FieldState.CardExpirationDateState -> showErrorIfNotValidInput(
+                        cardExpDateFieldLay,
+                        state
+                    )
+                    is FieldState.CardHolderNameState -> showErrorIfNotValidInput(
+                        cardHolderFieldLay,
+                        state
+                    )
                     is FieldState.CVCState -> showErrorIfNotValidInput(cardCVCFieldLay, state)
                 }
                 refreshAllStates()
@@ -217,7 +309,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         layout: VGSTextInputLayout?,
         state: FieldState
     ) {
-        if(!state.isValid && !state.hasFocus && !state.isEmpty) {
+        if (!state.isValid && !state.hasFocus && !state.isEmpty) {
             layout?.setError(getString(R.string.error_is_not_valid))
         } else {
             layout?.setError(null)
@@ -228,7 +320,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         showErrorIfNotValidInput(cardNumberFieldLay, state)
 
         previewCardNumber?.text = state.number
-        if(state.cardBrand == CardType.VISA.name) {
+        if (state.cardBrand == CardType.VISA.name) {
             previewCardBrand?.setImageResource(R.drawable.ic_custom_visa)
         } else {
             previewCardBrand?.setImageResource(state.drawableBrandResId)
@@ -256,27 +348,15 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
     }
 
     private fun checkAttachedFiles() {
-        if(vgsForm.getFileProvider().getAttachedFiles().isEmpty()) {
+        if (vgsForm.getFileProvider().getAttachedFiles().isEmpty()) {
             attachBtn?.text = getString(R.string.collect_activity_attach_btn)
         } else {
             attachBtn?.text = getString(R.string.collect_activity_detach_btn)
         }
     }
 
-    override fun onResponse(response: VGSResponse?) {
-        setEnabledResponseHeader(true)
-        setStateLoading(false)
-
-        when (response) {
-            is VGSResponse.SuccessResponse -> {
-                responseContainerView.text = "Code: ${response.successCode}"
-            }
-            is VGSResponse.ErrorResponse -> responseContainerView.text = response.toString()
-        }
-    }
-
-    private fun setStateLoading(state:Boolean) {
-        if(state) {
+    private fun setStateLoading(state: Boolean) {
+        if (state) {
             progressBar?.visibility = View.VISIBLE
             submitBtn?.isEnabled = false
             attachBtn?.isEnabled = false
@@ -287,8 +367,8 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
         }
     }
 
-    private fun setEnabledResponseHeader(isEnabled:Boolean) {
-        if(isEnabled) {
+    private fun setEnabledResponseHeader(isEnabled: Boolean) {
+        if (isEnabled) {
             attachBtn.setTextColor(ContextCompat.getColor(this, R.color.state_active))
             responseTitleView.setTextColor(ContextCompat.getColor(this, R.color.state_active))
         } else {
@@ -300,6 +380,7 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            R.id.revealBtn -> revealData()
             R.id.submitBtn -> submitData()
             R.id.attachBtn -> attachFile()
         }
@@ -326,11 +407,95 @@ class MainActivity: AppCompatActivity(), VgsCollectResponseListener, View.OnClic
     }
 
     private fun attachFile() {
-        if(vgsForm.getFileProvider().getAttachedFiles().isEmpty()) {
+        if (vgsForm.getFileProvider().getAttachedFiles().isEmpty()) {
             vgsForm.getFileProvider().attachFile("attachments.file")
         } else {
             vgsForm.getFileProvider().detachAll()
         }
         checkAttachedFiles()
     }
+
+    private fun setupShow() {
+        vgsShow.subscribe(revealedNumber!!)
+        vgsShow.subscribe(revealedExpirationDate!!)
+
+        revealedNumber!!.addTransformationRegex(
+            "(\\d{4})(\\d{4})(\\d{4})(\\d{4})".toRegex(),
+            "\$1-\$2-\$3-\$4"
+        )
+
+        revealedNumber?.setOnTextChangeListener(object : VGSTextView.OnTextChangedListener {
+            override fun onTextChange(view: VGSTextView, isEmpty: Boolean) {
+                Log.d(MainActivity::class.simpleName, "textIsEmpty: $isEmpty")
+            }
+        })
+        revealedNumber?.addOnCopyTextListener(object : VGSTextView.OnTextCopyListener {
+
+            override fun onTextCopied(view: VGSTextView, format: VGSTextView.CopyTextFormat) {
+                Toast.makeText(
+                    applicationContext,
+                    "Number text copied! format: $format",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+        revealedNumber?.setOnClickListener {
+            revealedNumber!!.copyToClipboard(VGSTextView.CopyTextFormat.RAW)
+        }
+
+        vgsShow.addOnResponseListener(object : VGSOnResponseListener {
+            override fun onResponse(response: com.verygoodsecurity.vgsshow.core.network.model.VGSResponse) {
+                setStateLoading(false)
+                responseContainerView.text = "Show Response Code: \n ${response.code}"
+                Log.d(MainActivity::class.simpleName, response.toString())
+            }
+        })
+    }
+
+    private fun revealData() {
+        if (revealNumberAlias.isNotEmpty() || revealDateAlias.isNotEmpty()) {
+            setStateLoading(true)
+            responseContainerView?.text = ""
+            vgsShow.requestAsync(
+                com.verygoodsecurity.vgsshow.core.network.model.VGSRequest.Builder(
+                    "post",
+                    VGSHttpMethod.POST
+                ).body(
+                    mapOf(
+                        "payment_card_number" to revealNumberAlias,
+                        "payment_card_expiration_date" to revealDateAlias
+                    )
+                ).build()
+            )
+        } else {
+            Toast.makeText(this, R.string.error_no_data_to_reveal, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    var revealDateAlias = ""
+    var revealNumberAlias = ""
+    private fun parseDateAlias(json: JSONObject?) {
+        json?.let {
+            if (it.has("json") && it.getJSONObject("json").has("expDate")) {
+                it.getJSONObject("json").getString("expDate")?.let {
+                    dateToken?.text = it
+                    revealDateAlias = it
+                }
+            }
+        }
+    }
+
+    private fun parseNumberAlias(json: JSONObject?) {
+        json?.let {
+            if (it.has("json") && it.getJSONObject("json").has("cardNumber")) {
+                it.getJSONObject("json").getString("cardNumber").let {
+                    numberToken?.text = it
+                    revealNumberAlias = it
+                }
+            }
+        }
+    }
+
 }
+
+typealias CollectSuccessResponse = com.verygoodsecurity.vgscollect.core.model.network.VGSResponse.SuccessResponse?

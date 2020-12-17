@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/collectContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="@dimen/preview_card_horizontal_padding"
+    android:paddingEnd="@dimen/preview_card_horizontal_padding"
+    android:paddingBottom="@dimen/preview_card_vertical_padding"
+    android:paddingTop="@dimen/preview_card_vertical_padding"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/previewHolderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/preview_holder_name_text_size"
+        android:text="John Galt"
+        android:visibility="invisible"
+        android:textColor="@color/preview_holder_name_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/previewCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/preview_holder_name_text_size"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:textColor="@color/preview_holder_name_color"
+        app:layout_constraintTop_toBottomOf="@+id/previewHolderName"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/previewExpirationDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/preview_holder_name_text_size"
+        android:text="12/24"
+        android:visibility="invisible"
+        android:textColor="@color/preview_holder_name_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/previewCardBrand"
+        app:layout_constraintTop_toTopOf="@+id/previewCardBrand"
+        app:layout_constraintBottom_toBottomOf="@+id/previewCardBrand"
+        />
+
+    <ImageView
+        android:id="@+id/previewCardBrand"
+        android:layout_width="64dp"
+        android:layout_height="22dp"
+        android:scaleType="centerInside"
+        app:layout_constraintTop_toBottomOf="@+id/previewCardNumber"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

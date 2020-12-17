@@ -46,200 +46,20 @@
                         app:cardCornerRadius="@dimen/half_default_padding"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="@dimen/half_default_padding">
-                        <androidx.constraintlayout.widget.ConstraintLayout
+
+                        <FrameLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/bg_card_preview"
-                            android:paddingStart="@dimen/preview_card_horizontal_padding"
-                            android:paddingEnd="@dimen/preview_card_horizontal_padding"
-                            android:paddingBottom="@dimen/preview_card_vertical_padding"
-                            android:paddingTop="@dimen/preview_card_vertical_padding">
+                            android:background="@drawable/bg_card_preview">
 
-                            <TextView
-                                android:id="@+id/previewHolderName"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/preview_holder_name_text_size"
-                                android:text="John Galt"
-                                android:visibility="invisible"
-                                android:textColor="@color/preview_holder_name_color"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"/>
+                            <include layout="@layout/layout_preview_card"/>
 
-                            <TextView
-                                android:id="@+id/previewCardNumber"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/preview_holder_name_text_size"
-                                android:paddingTop="24dp"
-                                android:paddingBottom="24dp"
-                                android:textColor="@color/preview_holder_name_color"
-                                app:layout_constraintTop_toBottomOf="@+id/previewHolderName"
-                                app:layout_constraintStart_toStartOf="parent"/>
-
-                            <TextView
-                                android:id="@+id/previewExpirationDate"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/preview_holder_name_text_size"
-                                android:text="12/24"
-                                android:visibility="invisible"
-                                android:textColor="@color/preview_holder_name_color"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/previewCardBrand"
-                                app:layout_constraintTop_toTopOf="@+id/previewCardBrand"
-                                app:layout_constraintBottom_toBottomOf="@+id/previewCardBrand"
-                                />
-
-                            <ImageView
-                                android:id="@+id/previewCardBrand"
-                                android:layout_width="64dp"
-                                android:layout_height="22dp"
-                                android:scaleType="centerInside"
-                                app:layout_constraintTop_toBottomOf="@+id/previewCardNumber"
-                                app:layout_constraintEnd_toEndOf="parent"/>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+                        </FrameLayout>
                     </androidx.cardview.widget.CardView>
 
+                    <include layout="@layout/layout_collect_payment_card"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/vgsFormView"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/card_preview_height"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        app:cardCornerRadius="@dimen/half_default_padding"
-                        android:layout_gravity="center_horizontal">
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/bg_vgs_card_view"
-                            android:paddingStart="@dimen/payment_card_horizontal_padding"
-                            android:paddingEnd="@dimen/payment_card_horizontal_padding"
-                            android:paddingBottom="@dimen/payment_card_vertical_padding"
-                            android:paddingTop="@dimen/payment_card_vertical_padding">
-
-                            <FrameLayout
-                                android:id="@+id/cardNumberWrapper"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/field_wrapper_height"
-                                android:layout_gravity="left|top"
-                                app:layout_constraintTop_toTopOf="parent"
-                                >
-                                <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
-                                    android:id="@+id/cardNumberFieldLay"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:hintEnabled="true"
-                                    app:boxCornerRadius="4dp"
-                                    app:hint="@string/card_number"
-                                    app:boxBackgroundModes="outline"
-                                    app:boxStrokeColor="@color/colorAccent">
-                                    <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
-                                        android:id="@+id/cardNumberField"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        style="@style/AppTheme.PaymentField"
-                                        app:fieldName="card_data.cardNumber"
-                                        app:numberDivider=" "
-                                        android:nextFocusDown="@+id/cardHolderField"
-                                        app:imeOptions="actionNext"
-                                        app:cardBrandIconGravity="end"/>
-                                </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
-                            </FrameLayout>
-                            <FrameLayout
-                                android:id="@+id/cardHolderWrapper"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/field_wrapper_height"
-                                app:layout_constraintTop_toBottomOf="@+id/cardNumberWrapper"
-                                android:layout_gravity="left|top"
-                                >
-                                <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
-                                    android:id="@+id/cardHolderFieldLay"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:hintEnabled="true"
-                                    app:boxCornerRadius="4dp"
-                                    app:endIconTint="@color/colorAccent"
-                                    app:hint="@string/card_holder"
-                                    app:boxBackgroundModes="outline"
-                                    app:boxStrokeColor="@color/colorAccent">
-                                    <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
-                                        android:id="@+id/cardHolderField"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        style="@style/AppTheme.PaymentField"
-                                        android:nextFocusDown="@+id/cardExpDateField"
-                                        app:imeOptions="actionNext"
-                                        app:fieldName="card_data.personal_data.cardHolder"/>
-                                </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
-                            </FrameLayout>
-
-                            <FrameLayout
-                                android:id="@+id/cardExpDateWrapper"
-                                android:layout_width="0dp"
-                                android:layout_height="@dimen/field_wrapper_height"
-                                app:layout_constraintTop_toBottomOf="@+id/cardHolderWrapper"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/cardCVCWrapper"
-                                android:layout_gravity="left|top"
-                                >
-                                <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
-                                    android:id="@+id/cardExpDateFieldLay"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:hintEnabled="true"
-                                    app:boxCornerRadius="4dp"
-                                    app:hint="@string/exp_date"
-                                    app:boxBackgroundModes="outline"
-                                    app:boxStrokeColor="@color/colorAccent">
-                                    <com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
-                                        android:id="@+id/cardExpDateField"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        style="@style/AppTheme.PaymentField"
-                                        app:outputPattern="yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"
-                                        app:fieldName="card_data.personal_data.secret.expDate"
-                                        android:nextFocusDown="@+id/cardCVCField"
-                                        app:imeOptions="actionNext"
-                                        app:datePickerModes="input"
-                                        app:formatterMode="strict"
-                                        app:datePattern="MM/yy"/>
-                                </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
-                            </FrameLayout>
-
-                            <FrameLayout
-                                android:id="@+id/cardCVCWrapper"
-                                android:layout_width="75dp"
-                                android:layout_height="@dimen/field_wrapper_height"
-                                android:layout_marginStart="@dimen/payment_card_horizontal_margin"
-                                app:layout_constraintTop_toTopOf="@+id/cardExpDateWrapper"
-                                app:layout_constraintBottom_toBottomOf="@+id/cardExpDateWrapper"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/cardExpDateWrapper"
-                                android:layout_gravity="left|top"
-                                >
-                                <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
-                                    android:id="@+id/cardCVCFieldLay"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:hintEnabled="true"
-                                    app:boxCornerRadius="4dp"
-                                    app:hint="@string/cvc"
-                                    app:boxBackgroundModes="outline"
-                                    app:boxStrokeColor="@color/colorAccent">
-                                    <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
-                                        android:id="@+id/cardCVCField"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        style="@style/AppTheme.PaymentField"
-                                        app:imeOptions="actionDone"
-                                        app:fieldName="card_data.cardCvc"/>
-                                </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
-                            </FrameLayout>
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
+                    <include layout="@layout/layout_show_reveal_card"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -259,13 +79,25 @@
                         </FrameLayout>
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/revealBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/white"
+                            android:textSize="14dp"
+                            android:text="@string/collect_activity_reveal_btn"
+                            android:layout_marginEnd="@dimen/default_padding"
+                            app:backgroundTint="@color/colorAccent"
+                            app:cornerRadius="@dimen/default_padding"/>
+
+
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/submitBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@android:color/white"
                             android:textSize="14dp"
                             android:text="@string/collect_activity_submit_btn"
-                            android:layout_marginEnd="@dimen/default_padding"
+                            android:layout_marginEnd="@dimen/half_default_padding"
                             app:backgroundTint="@color/colorAccent"
                             app:cornerRadius="@dimen/default_padding"/>
 
