@@ -1,7 +1,6 @@
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:id="@+id/revealContainer"
-    android:orientation="vertical"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingStart="@dimen/default_padding"
@@ -10,29 +9,74 @@
     android:paddingTop="@dimen/default_padding"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <TextView
+        android:id="@+id/showTitleTag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="VGS SHOW"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc"
+        app:layout_constraintTop_toBottomOf="@+id/showTitleTag"/>
+
     <com.verygoodsecurity.vgsshow.widget.VGSTextView
         android:id="@+id/revealedNumber"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/preview_card_horizontal_padding"
         android:paddingEnd="@dimen/preview_card_horizontal_padding"
+        android:layout_marginTop="@dimen/half_default_padding"
         app:hint="Revealed Card Number"
         app:contentPath="json.payment_card_number"
         android:textSize="@dimen/preview_holder_name_text_size"
+        app:inputType="numberPassword"
+        android:paddingBottom="@dimen/half_default_padding"
+        android:paddingTop="@dimen/default_padding"
         android:layout_marginBottom="@dimen/default_padding"
+        android:layout_marginEnd="@dimen/default_padding"
         android:layout_gravity="center"
-        android:textColor="@color/preview_holder_name_color"/>
+        android:textColor="@color/preview_holder_name_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintEnd_toStartOf="@+id/passwordIcon"
+        />
 
     <com.verygoodsecurity.vgsshow.widget.VGSTextView
         android:id="@+id/revealedExpirationDate"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/preview_card_horizontal_padding"
         android:paddingEnd="@dimen/preview_card_horizontal_padding"
+        android:layout_marginTop="@dimen/half_default_padding"
+        android:paddingTop="@dimen/half_default_padding"
+        android:paddingBottom="@dimen/half_default_padding"
+        android:layout_marginEnd="@dimen/default_padding"
         app:contentPath="json.payment_card_expiration_date"
         android:textSize="@dimen/preview_holder_name_text_size"
+        app:inputType="numberPassword"
         app:hint="Revealed Expiration Date"
         android:textColor="@color/preview_holder_name_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/revealedNumber"
+        app:layout_constraintEnd_toStartOf="@+id/passwordIcon"
         />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/passwordIcon"
+        android:layout_width="@dimen/password_icon_size"
+        android:layout_height="@dimen/password_icon_size"
+        android:src="@drawable/ic_password_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/revealedNumber"
+        app:layout_constraintBottom_toBottomOf="@+id/revealedExpirationDate"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

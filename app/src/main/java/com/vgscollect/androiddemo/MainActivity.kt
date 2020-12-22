@@ -3,8 +3,10 @@ package com.vgscollect.androiddemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.*
+import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -31,6 +33,8 @@ import com.verygoodsecurity.vgsshow.core.listener.VGSOnResponseListener
 import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.attachBtn
+import kotlinx.android.synthetic.main.layout_show_reveal_card.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.lang.StringBuilder
@@ -84,10 +88,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val revealedNumber: VGSTextView? by lazy { findViewById(R.id.revealedNumber) }
     private val revealedExpirationDate: VGSTextView? by lazy { findViewById(R.id.revealedExpirationDate) }
 
+    private var showContentIsHidden = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        submitBtn?.setOnClickListener(this)
+        revealBtn?.setOnClickListener(this)
+        attachBtn?.setOnClickListener(this)
+        passwordIcon?.setOnClickListener(this)
 
         setupCollect()
         setupShow()
@@ -95,10 +105,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setupCollect() {
         iconAdapter = IconAdapter(this)
-
-        submitBtn?.setOnClickListener(this)
-        revealBtn?.setOnClickListener(this)
-        attachBtn?.setOnClickListener(this)
 
         vgsForm.addOnResponseListeners(object : VgsCollectResponseListener {
             override fun onResponse(response: VGSResponse?) {
@@ -383,6 +389,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.revealBtn -> revealData()
             R.id.submitBtn -> submitData()
             R.id.attachBtn -> attachFile()
+            R.id.passwordIcon -> applyPasswordOnVGSShowControls()
+        }
+    }
+
+    private fun applyPasswordOnVGSShowControls() {
+        if(showContentIsHidden) {
+            showContentIsHidden = false
+            revealedExpirationDate?.setInputType(EditorInfo.TYPE_NULL)
+            revealedNumber?.setInputType(EditorInfo.TYPE_NULL)
+            passwordIcon.setImageResource(R.drawable.ic_password_on)
+        } else {
+            showContentIsHidden = true
+            revealedExpirationDate?.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+            revealedNumber?.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+            passwordIcon.setImageResource(R.drawable.ic_password_off)
         }
     }
 
