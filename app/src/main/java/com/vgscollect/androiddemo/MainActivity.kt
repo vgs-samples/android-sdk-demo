@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         private const val PATH = "/post"
     }
 
-
     private val vgsForm: VGSCollect by lazy {
         VGSCollect.Builder(this, VAULT_ID)
             .setEnvironment(ENVIRONMENT)
@@ -57,7 +56,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private val vgsShow: VGSShow by lazy {
-        VGSShow(this, VAULT_ID, VGSEnvironment.Sandbox())
+        VGSShow.Builder(this, VAULT_ID)
+            .setEnvironment(VGSEnvironment.Sandbox())
+            .build()
     }
 
     private val maskAdapter = MaskAdapter()
