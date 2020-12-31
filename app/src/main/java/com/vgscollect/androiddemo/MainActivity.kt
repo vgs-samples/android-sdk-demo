@@ -501,6 +501,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (it.has("json") && it.getJSONObject("json").has("expDate")) {
                 it.getJSONObject("json").getString("expDate")?.let {
                     dateToken?.text = it
+                    dateToken?.visibility = View.VISIBLE
                     revealDateAlias = it
                 }
             }
@@ -512,6 +513,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (it.has("json") && it.getJSONObject("json").has("cardNumber")) {
                 it.getJSONObject("json").getString("cardNumber").let {
                     numberToken?.text = it
+                    numberToken?.visibility = View.VISIBLE
                     revealNumberAlias = it
                 }
             }

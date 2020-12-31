@@ -16,88 +16,66 @@
         android:layout_height="match_parent"
         android:paddingStart="@dimen/payment_card_horizontal_padding"
         android:paddingEnd="@dimen/payment_card_horizontal_padding"
-        android:paddingBottom="@dimen/payment_card_vertical_padding"
+        android:paddingBottom="@dimen/payment_card_horizontal_padding"
         android:paddingTop="@dimen/payment_card_vertical_padding">
 
-            <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
-                android:id="@+id/cardNumberFieldLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:hintEnabled="true"
-                app:boxCornerRadius="4dp"
-                app:hint="@string/card_number"
-                app:boxBackgroundModes="outline"
-                app:boxStrokeColor="@color/colorAccent">
-                <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
-                    android:id="@+id/cardNumberField"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/AppTheme.PaymentField"
-                    app:fieldName="cardNumber"
-                    app:numberDivider=" "
-                    app:text="4111111111111111"
-                    android:nextFocusDown="@+id/cardHolderField"
-                    app:imeOptions="actionNext"
-                    app:cardBrandIconGravity="end"/>
-            </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
         <TextView
             android:id="@+id/numberToken"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardNumberFieldLay"/>
 
-            <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
-                android:id="@+id/cardHolderFieldLay"
+        <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+            android:id="@+id/cardNumberFieldLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/numberToken"
+            app:hintEnabled="true"
+            app:boxCornerRadius="4dp"
+            app:errorEnabled="true"
+            app:hint="@string/card_number"
+            app:boxBackgroundModes="outline"
+            app:boxStrokeColor="@color/colorAccent">
+            <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
+                android:id="@+id/cardNumberField"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/numberToken"
-                app:hintEnabled="true"
-                app:boxCornerRadius="4dp"
-                app:endIconTint="@color/colorAccent"
-                app:hint="@string/card_holder"
-                app:boxBackgroundModes="outline"
-                app:boxStrokeColor="@color/colorAccent">
-                <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
-                    android:id="@+id/cardHolderField"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/AppTheme.PaymentField"
-                    app:text="John G"
-                    android:nextFocusDown="@+id/cardExpDateField"
-                    app:imeOptions="actionNext"
-                    app:fieldName="card_data.personal_data.cardHolder"/>
-            </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+                android:layout_height="match_parent"
+                style="@style/AppTheme.PaymentField"
+                app:fieldName="cardNumber"
+                app:numberDivider=" "
+                app:text="4111111111111111"
+                android:nextFocusDown="@+id/cardHolderField"
+                app:imeOptions="actionNext"
+                app:cardBrandIconGravity="end"/>
+        </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
-            <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
-                android:id="@+id/cardExpDateFieldLay"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/cardHolderFieldLay"
-                app:layout_constraintStart_toStartOf="parent"
-                app:hintEnabled="true"
-                android:layout_marginTop="@dimen/half_default_padding"
-                app:boxCornerRadius="4dp"
-                app:hint="@string/exp_date"
-                app:layout_constraintWidth_percent="0.67"
-                app:boxBackgroundModes="outline"
-                app:boxStrokeColor="@color/colorAccent">
-                <com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
-                    android:id="@+id/cardExpDateField"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/AppTheme.PaymentField"
-                    app:outputPattern="MM/yy"
-                    app:fieldName="expDate"
-                    android:nextFocusDown="@+id/cardCVCField"
-                    app:imeOptions="actionNext"
-                    app:text="12/34"
-                    app:datePickerModes="input"
-                    app:formatterMode="strict"
-                    app:datePattern="MM/yy"/>
-            </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+        <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+            android:id="@+id/cardHolderFieldLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/cardNumberFieldLay"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:boxCornerRadius="4dp"
+            app:endIconTint="@color/colorAccent"
+            app:hint="@string/card_holder"
+            app:boxBackgroundModes="outline"
+            app:boxStrokeColor="@color/colorAccent">
+            <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
+                android:id="@+id/cardHolderField"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/AppTheme.PaymentField"
+                app:text="John G"
+                android:nextFocusDown="@+id/cardExpDateField"
+                app:imeOptions="actionNext"
+                app:fieldName="card_data.personal_data.cardHolder"/>
+        </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
 
 
         <TextView
@@ -105,36 +83,65 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            app:layout_constraintTop_toBottomOf="@+id/cardExpDateFieldLay"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/cardHolderFieldLay"
             app:layout_constraintStart_toStartOf="@+id/cardExpDateFieldLay"
             app:layout_constraintEnd_toEndOf="@+id/cardExpDateFieldLay"/>
 
 
+        <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+            android:id="@+id/cardExpDateFieldLay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/dateToken"
+            app:layout_constraintStart_toStartOf="parent"
+            app:hintEnabled="true"
+            app:errorEnabled="true"
+            app:boxCornerRadius="4dp"
+            app:hint="@string/exp_date"
+            app:layout_constraintWidth_percent="0.67"
+            app:boxBackgroundModes="outline"
+            app:boxStrokeColor="@color/colorAccent">
+            <com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
+                android:id="@+id/cardExpDateField"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/AppTheme.PaymentField"
+                app:outputPattern="MM/yy"
+                app:fieldName="expDate"
+                android:nextFocusDown="@+id/cardCVCField"
+                app:imeOptions="actionNext"
+                app:text="12/34"
+                app:datePickerModes="input"
+                app:formatterMode="strict"
+                app:datePattern="MM/yy"/>
+        </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
 
         <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
-                android:id="@+id/cardCVCFieldLay"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/half_default_padding"
-                android:layout_marginTop="@dimen/half_default_padding"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintTop_toBottomOf="@+id/cardHolderFieldLay"
-                app:layout_constraintWidth_percent="0.3"
-                app:hintEnabled="true"
-                app:boxCornerRadius="4dp"
-                app:hint="@string/cvc"
-                app:boxBackgroundModes="outline"
-                app:boxStrokeColor="@color/colorAccent">
-                <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
-                    android:id="@+id/cardCVCField"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:text="123"
-                    style="@style/AppTheme.PaymentField"
-                    app:imeOptions="actionDone"
-                    app:fieldName="card_data.cardCvc"/>
-            </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+            android:id="@+id/cardCVCFieldLay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/half_default_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toBottomOf="@+id/dateToken"
+            app:layout_constraintWidth_percent="0.3"
+            app:hintEnabled="true"
+            app:boxCornerRadius="4dp"
+            app:errorEnabled="true"
+            app:hint="@string/cvc"
+            app:boxBackgroundModes="outline"
+            app:boxStrokeColor="@color/colorAccent">
+            <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
+                android:id="@+id/cardCVCField"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:text="123"
+                style="@style/AppTheme.PaymentField"
+                app:imeOptions="actionDone"
+                app:fieldName="card_data.cardCvc"/>
+        </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
