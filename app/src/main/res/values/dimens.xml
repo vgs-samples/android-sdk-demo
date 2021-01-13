@@ -4,6 +4,9 @@
     <dimen name="half_default_padding">8dp</dimen>
     <dimen name="button_size">48dp</dimen>
 
+    <!--Intro Activity    -->
+    <dimen name="into_screen_width_btn">220dp</dimen>
+    <dimen name="into_screen_width_description">320dp</dimen>
 
     <dimen name="collect_activity_cards_title_text_size">20dp</dimen>
     <dimen name="field_wrapper_height">52dp</dimen>

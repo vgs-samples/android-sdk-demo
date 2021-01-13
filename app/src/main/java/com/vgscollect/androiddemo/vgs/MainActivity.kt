@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo
+package com.vgscollect.androiddemo.vgs
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +32,7 @@ import com.verygoodsecurity.vgsshow.core.VGSEnvironment
 import com.verygoodsecurity.vgsshow.core.listener.VGSOnResponseListener
 import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
+import com.vgscollect.androiddemo.vgs.IconAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.attachBtn
 import kotlinx.android.synthetic.main.layout_show_reveal_card.*
