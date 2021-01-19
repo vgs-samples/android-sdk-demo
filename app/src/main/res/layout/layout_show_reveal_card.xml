@@ -1,5 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:id="@+id/revealContainer"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,14 +17,14 @@
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:text="VGS SHOW"/>
+        android:text="VGS SHOW" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#cccccc"
-        app:layout_constraintTop_toBottomOf="@+id/showTitleTag"/>
+        app:layout_constraintTop_toBottomOf="@+id/showTitleTag" />
 
     <com.verygoodsecurity.vgsshow.widget.VGSTextView
         android:id="@+id/revealedNumber"
@@ -34,6 +33,7 @@
         android:paddingStart="@dimen/preview_card_horizontal_padding"
         android:paddingEnd="@dimen/preview_card_horizontal_padding"
         android:layout_marginTop="@dimen/half_default_padding"
+        app:isSecureText="true"
         app:hint="Revealed Card Number"
         app:contentPath="json.payment_card_number"
         android:textSize="@dimen/preview_holder_name_text_size"
@@ -46,8 +46,7 @@
         android:textColor="@color/preview_holder_name_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:layout_constraintEnd_toStartOf="@+id/passwordIcon"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/passwordIcon" />
 
     <com.verygoodsecurity.vgsshow.widget.VGSTextView
         android:id="@+id/revealedExpirationDate"
@@ -66,8 +65,7 @@
         android:textColor="@color/preview_holder_name_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/revealedNumber"
-        app:layout_constraintEnd_toStartOf="@+id/passwordIcon"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/passwordIcon" />
 
     <ImageView
         android:id="@+id/passwordIcon"
@@ -76,7 +74,6 @@
         android:src="@drawable/ic_password_off"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/revealedNumber"
-        app:layout_constraintBottom_toBottomOf="@+id/revealedExpirationDate"
-        />
+        app:layout_constraintBottom_toBottomOf="@+id/revealedExpirationDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

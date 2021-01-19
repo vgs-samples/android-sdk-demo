@@ -31,5 +31,5 @@ dependencies {
     implementation 'com.verygoodsecurity:adapter-bouncer:1.0.1'
 
     //VGS Show SDK
-    implementation 'com.verygoodsecurity:vgsshow:1.0.0'
+    implementation 'com.verygoodsecurity:vgsshow:1.0.2'
 }

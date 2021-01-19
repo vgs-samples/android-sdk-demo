@@ -32,6 +32,7 @@ import com.verygoodsecurity.vgsshow.core.VGSEnvironment
 import com.verygoodsecurity.vgsshow.core.listener.VGSOnResponseListener
 import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
+import com.verygoodsecurity.vgsshow.widget.view.textview.model.VGSTextRange
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.attachBtn
 import kotlinx.android.synthetic.main.layout_show_reveal_card.*
@@ -396,13 +397,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun applyPasswordOnVGSShowControls() {
         if(showContentIsHidden) {
             showContentIsHidden = false
-            revealedExpirationDate?.setInputType(EditorInfo.TYPE_NULL)
-            revealedNumber?.setInputType(EditorInfo.TYPE_NULL)
+            revealedNumber?.isSecureText = false
             passwordIcon.setImageResource(R.drawable.ic_password_on)
         } else {
             showContentIsHidden = true
-            revealedExpirationDate?.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
-            revealedNumber?.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+            revealedNumber?.isSecureText = true
             passwordIcon.setImageResource(R.drawable.ic_password_off)
         }
     }
@@ -440,6 +439,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         vgsShow.subscribe(revealedNumber!!)
         vgsShow.subscribe(revealedExpirationDate!!)
 
+        revealedNumber?.setSecureTextRange(arrayOf(VGSTextRange(5, 8), VGSTextRange(10, 13)))
+        revealedNumber?.secureTextSymbol = '@'
         revealedNumber!!.addTransformationRegex(
             "(\\d{4})(\\d{4})(\\d{4})(\\d{4})".toRegex(),
             "\$1-\$2-\$3-\$4"
