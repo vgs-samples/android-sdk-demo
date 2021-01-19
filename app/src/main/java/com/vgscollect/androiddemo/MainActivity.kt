@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         private const val PATH = "/post"
     }
 
-
     private val vgsForm: VGSCollect by lazy {
         VGSCollect.Builder(this, VAULT_ID)
             .setEnvironment(ENVIRONMENT)
@@ -58,7 +57,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private val vgsShow: VGSShow by lazy {
-        VGSShow(this, VAULT_ID, VGSEnvironment.Sandbox())
+        VGSShow.Builder(this, VAULT_ID)
+            .setEnvironment(VGSEnvironment.Sandbox())
+            .build()
     }
 
     private val maskAdapter = MaskAdapter()
@@ -501,6 +502,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (it.has("json") && it.getJSONObject("json").has("expDate")) {
                 it.getJSONObject("json").getString("expDate")?.let {
                     dateToken?.text = it
+                    dateToken?.visibility = View.VISIBLE
                     revealDateAlias = it
                 }
             }
@@ -512,6 +514,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if (it.has("json") && it.getJSONObject("json").has("cardNumber")) {
                 it.getJSONObject("json").getString("cardNumber").let {
                     numberToken?.text = it
+                    numberToken?.visibility = View.VISIBLE
                     revealNumberAlias = it
                 }
             }
