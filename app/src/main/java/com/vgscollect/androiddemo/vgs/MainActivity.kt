@@ -32,9 +32,8 @@ import com.verygoodsecurity.vgsshow.core.VGSEnvironment
 import com.verygoodsecurity.vgsshow.core.listener.VGSOnResponseListener
 import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
-import com.vgscollect.androiddemo.vgs.IconAdapter
+import com.vgscollect.androiddemo.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.attachBtn
 import kotlinx.android.synthetic.main.layout_show_reveal_card.*
 import org.json.JSONException
 import org.json.JSONObject

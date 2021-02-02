@@ -23,6 +23,7 @@
     <dimen name="vgs_field_horizontal_padding">21dp</dimen>
     <dimen name="vgs_field_vertical_padding">2dp</dimen>
     <dimen name="vgs_field_text_size">14dp</dimen>
+    <dimen name="corner_radius">4dp</dimen>
 
     <dimen name="password_icon_size">48dp</dimen>
 
