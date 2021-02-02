@@ -25,6 +25,8 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/corner_radius"
+        android:paddingEnd="@dimen/corner_radius"
         android:layout_marginTop="@dimen/default_padding"
         app:hint="Name"/>
 
