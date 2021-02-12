@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.verygoodsecurity.api.bouncer.ScanActivity
+import com.verygoodsecurity.vgscollect.VGSCollectLogger
 import com.verygoodsecurity.vgscollect.core.Environment
 import com.verygoodsecurity.vgscollect.core.HTTPMethod
 import com.verygoodsecurity.vgscollect.core.VGSCollect
@@ -30,6 +31,7 @@ import com.verygoodsecurity.vgscollect.widget.*
 import com.verygoodsecurity.vgsshow.VGSShow
 import com.verygoodsecurity.vgsshow.core.VGSEnvironment
 import com.verygoodsecurity.vgsshow.core.listener.VGSOnResponseListener
+import com.verygoodsecurity.vgsshow.core.logs.VGSShowLogger
 import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import com.verygoodsecurity.vgsshow.widget.view.textview.model.VGSTextRange
@@ -106,6 +108,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setupCollect() {
+        VGSCollectLogger.isEnabled = true
+        VGSCollectLogger.logLevel = VGSCollectLogger.Level.DEBUG
+
         iconAdapter = IconAdapter(this)
 
         vgsForm.addOnResponseListeners(object : VgsCollectResponseListener {
@@ -437,11 +442,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setupShow() {
+        VGSShowLogger.isEnabled = true
+        VGSShowLogger.level = VGSShowLogger.Level.DEBUG
+
         vgsShow.subscribe(revealedNumber!!)
         vgsShow.subscribe(revealedExpirationDate!!)
 
         revealedNumber?.setSecureTextRange(arrayOf(VGSTextRange(5, 8), VGSTextRange(10, 13)))
-        revealedNumber?.secureTextSymbol = '@'
+        revealedNumber?.secureTextSymbol = '#'
         revealedNumber!!.addTransformationRegex(
             "(\\d{4})(\\d{4})(\\d{4})(\\d{4})".toRegex(),
             "\$1-\$2-\$3-\$4"
