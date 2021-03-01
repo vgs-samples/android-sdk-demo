@@ -28,7 +28,7 @@ dependencies {
 
     //VGS Collect SDK
     implementation 'com.verygoodsecurity:vgscollect:1.6.1'
-    implementation 'com.verygoodsecurity:adapter-bouncer:1.0.2'
+    implementation 'com.verygoodsecurity:adapter-bouncer:1.0.3'
 
     //VGS Show SDK
     implementation 'com.verygoodsecurity:vgsshow:1.1.0'
