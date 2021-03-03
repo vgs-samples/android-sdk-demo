@@ -1,44 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="@dimen/default_padding">
+    android:padding="@dimen/default_padding"
+    tools:ignore="HardcodedText">
 
     <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundModes="outline"
+        android:textColorHint="@android:color/darker_gray"
+        app:hint="@string/card_number"
+        app:hintTextColor="@color/colorAccent"
         app:hintEnabled="true"
-        app:boxCornerRadius="@dimen/corner_radius">
+        app:boxCornerRadius="@dimen/corner_radius"
+        app:errorEnabled="true"
+        app:boxBackgroundModes="outline"
+        app:boxStrokeColor="@color/colorAccent">
+
         <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
+            android:id="@+id/etCardNumber"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/corner_radius"
-            app:hint="Card Number"
-            app:numberDivider=" "/>
+            android:layout_height="wrap_content"
+            android:padding="@dimen/half_default_padding"
+            app:textSize="16sp"
+            app:cardBrandIconGravity="end"
+            app:brandIconVisibility="ifDetected"
+            app:inputType="number"
+            app:numberDivider=" "
+            app:fieldName="cardNumber"
+            app:imeOptions="actionNext"
+            app:textColor="@android:color/black"
+            android:nextFocusForward="@+id/etCardHolderName"/>
+
     </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
-    <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
-        android:id="@+id/cardHolder"
-        android:layout_gravity="center"
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/corner_radius"
-        android:paddingEnd="@dimen/corner_radius"
-        android:layout_marginTop="@dimen/default_padding"
-        app:hint="Name"/>
+        android:layout_marginTop="@dimen/half_default_padding"
+        android:textColorHint="@android:color/darker_gray"
+        app:hintTextColor="@color/colorAccent"
+        app:errorEnabled="true"
+        app:boxCornerRadius="@dimen/corner_radius"
+        app:endIconTint="@color/colorAccent"
+        app:hint="@string/card_holder"
+        app:boxBackgroundModes="outline"
+        app:boxStrokeColor="@color/colorAccent">
 
-    <Button
+        <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
+            android:id="@+id/etCardHolderName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/half_default_padding"
+            app:imeOptions="actionNext"
+            app:fieldName="card_data.personal_data.cardHolder"
+            app:inputType="text"
+            app:textSize="16sp"
+            android:nextFocusDown="@id/etDate"
+            android:nextFocusForward="@+id/etDate" />
+
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/half_default_padding"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:hint="@string/exp_date"
+            android:layout_marginEnd="@dimen/half_default_padding"
+            android:textColorHint="@android:color/darker_gray"
+            app:hintEnabled="true"
+            app:hintTextColor="@color/colorAccent"
+            app:errorEnabled="true"
+            app:boxCornerRadius="@dimen/corner_radius"
+            app:endIconTint="@color/colorAccent"
+            app:boxBackgroundModes="outline"
+            app:boxStrokeColor="@color/colorAccent">
+
+            <com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
+                android:id="@+id/etDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/half_default_padding"
+                app:textSize="16sp"
+                app:outputPattern="MM/yy"
+                app:fieldName="expDate"
+                android:nextFocusDown="@+id/etCVC"
+                app:imeOptions="actionNext"
+                app:datePickerModes="calendar"
+                app:formatterMode="strict"
+                app:datePattern="MM/yy"
+                android:nextFocusForward="@+id/cardCVCField" />
+
+        </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+
+        <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+            android:id="@+id/cardCVCFieldLay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/half_default_padding"
+            app:hintEnabled="true"
+            app:boxCornerRadius="4dp"
+            app:errorEnabled="true"
+            app:hint="@string/cvc"
+            app:boxBackgroundModes="outline"
+            app:boxStrokeColor="@color/colorAccent">
+
+            <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
+                android:id="@+id/etCVC"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/half_default_padding"
+                app:textSize="16sp"
+                app:previewIconVisibility="always"
+                app:imeOptions="actionDone"
+                app:fieldName="card_data.cardCvc"/>
+
+        </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbAddCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end"
         android:layout_marginTop="@dimen/default_padding"
-        android:onClick="addViewProgrammatically"
-        android:text="add View"/>
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"/>
+        android:backgroundTint="@color/colorAccent"
+        android:text="Add card"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
 </LinearLayout>
