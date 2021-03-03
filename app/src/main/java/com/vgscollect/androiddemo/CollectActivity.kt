@@ -23,9 +23,7 @@ class CollectActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collect_components)
-
         mbAddCard?.setOnClickListener { submitData() }
-
         setupCollect()
     }
 
@@ -34,7 +32,6 @@ class CollectActivity: AppCompatActivity() {
             .setMethod(HTTPMethod.POST)
             .setPath("/post")
             .build()
-
         vgsForm.asyncSubmit(request)
     }
 
@@ -43,7 +40,6 @@ class CollectActivity: AppCompatActivity() {
         vgsForm.bindView(etCardHolderName)
         vgsForm.bindView(etDate)
         vgsForm.bindView(etCVC)
-
         vgsForm.addOnResponseListeners(object : VgsCollectResponseListener {
             override fun onResponse(response: VGSResponse?) {
                 when(response?.code) {
