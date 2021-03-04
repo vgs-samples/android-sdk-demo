@@ -29,4 +29,6 @@
 
     <dimen name="card_preview_width">300dp</dimen>
     <dimen name="card_preview_height">190dp</dimen>
+
+    <dimen name="components_text_size">16sp</dimen>
 </resources>

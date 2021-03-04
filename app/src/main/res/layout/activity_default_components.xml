@@ -27,7 +27,7 @@
             android:inputType="number"
             android:lines="1"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="@dimen/components_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -51,7 +51,7 @@
             android:lines="1"
             android:maxLength="30"
             android:nextFocusDown="@id/etDate"
-            android:textSize="16sp" />
+            android:textSize="@dimen/components_text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -79,7 +79,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/sofia_pro"
                 android:lines="1"
-                android:textSize="16sp" />
+                android:textSize="@dimen/components_text_size" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -104,7 +104,7 @@
                 android:inputType="number"
                 android:lines="1"
                 android:maxLength="3"
-                android:textSize="16sp" />
+                android:textSize="@dimen/components_text_size" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -118,5 +118,5 @@
         android:fontFamily="@font/sofia_pro"
         android:text="Add card"
         android:textAllCaps="false"
-        android:textSize="18sp" />
+        android:textSize="@dimen/components_text_size" />
 </LinearLayout>
