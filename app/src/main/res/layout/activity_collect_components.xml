@@ -139,6 +139,7 @@
         android:layout_marginTop="@dimen/default_padding"
         android:backgroundTint="@color/colorAccent"
         android:text="Add card"
+        android:onClick="submitData"
         android:textAllCaps="false"
         android:textSize="18sp" />
 </LinearLayout>

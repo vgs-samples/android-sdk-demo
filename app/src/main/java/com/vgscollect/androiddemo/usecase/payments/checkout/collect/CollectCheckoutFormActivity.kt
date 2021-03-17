@@ -1,19 +1,19 @@
 package com.vgscollect.androiddemo.usecase.payments.checkout.collect
 
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.verygoodsecurity.vgscollect.core.Environment
 import com.verygoodsecurity.vgscollect.core.HTTPMethod
 import com.verygoodsecurity.vgscollect.core.VGSCollect
 import com.verygoodsecurity.vgscollect.core.VgsCollectResponseListener
-import com.verygoodsecurity.vgscollect.core.model.network.VGSRequest
 import com.verygoodsecurity.vgscollect.core.model.network.VGSResponse
+import com.verygoodsecurity.vgscollect.view.InputFieldView
 import com.vgscollect.androiddemo.R
 import kotlinx.android.synthetic.main.activity_collect_components.*
-import kotlinx.android.synthetic.main.activity_main.*
 
-class CollectCheckoutFormActivity: AppCompatActivity() {
+class CollectCheckoutFormActivity : AppCompatActivity() {
 
     private val vgsForm: VGSCollect by lazy {
         VGSCollect.Builder(this, "tntpszqgikn")
@@ -24,16 +24,11 @@ class CollectCheckoutFormActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_collect_components)
-        mbAddCard?.setOnClickListener { submitData() }
         setupCollect()
     }
 
-    private fun submitData() {
-        val request: VGSRequest = VGSRequest.VGSRequestBuilder()
-            .setMethod(HTTPMethod.POST)
-            .setPath("/post")
-            .build()
-        vgsForm.asyncSubmit(request)
+    fun submitData(v: View) {
+        vgsForm.asyncSubmit("/post", HTTPMethod.POST)
     }
 
     private fun setupCollect() {
@@ -43,13 +38,9 @@ class CollectCheckoutFormActivity: AppCompatActivity() {
         vgsForm.bindView(etCVC)
         vgsForm.addOnResponseListeners(object : VgsCollectResponseListener {
             override fun onResponse(response: VGSResponse?) {
-                when(response?.code) {
-                    null -> return
-                    200 -> Toast.makeText(this@CollectCheckoutFormActivity, "Card added!", Toast.LENGTH_SHORT).show()
-                    else -> Toast.makeText(this@CollectCheckoutFormActivity, " $response", Toast.LENGTH_SHORT).show()
-                }
-
+                Log.d(InputFieldView::class.simpleName.toString(), response.toString())
             }
         })
     }
+
 }

@@ -4,8 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.vgscollect.androiddemo.usecase.payments.checkout.android.NativeCheckoutFormActivity
 import com.vgscollect.androiddemo.usecase.payments.checkout.collect.CollectCheckoutFormActivity
-import com.vgscollect.androiddemo.usecase.payments.demo.MainActivity
+import com.vgscollect.androiddemo.usecase.payments.demo.PaymentCheckoutActivity
 import kotlinx.android.synthetic.main.activity_intro.*
 
 class IntroActivity: AppCompatActivity(), View.OnClickListener {
@@ -30,7 +31,7 @@ class IntroActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     private fun runCollectShowUI() {
-        with(Intent(this, MainActivity::class.java)) {
+        with(Intent(this, PaymentCheckoutActivity::class.java)) {
             startActivity(this)
         }
     }
@@ -42,7 +43,7 @@ class IntroActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     private fun runNativeUI() {
-        with(Intent(this, NativeControlsActivity::class.java)) {
+        with(Intent(this, NativeCheckoutFormActivity::class.java)) {
             startActivity(this)
         }
     }

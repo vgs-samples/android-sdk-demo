@@ -39,7 +39,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.lang.StringBuilder
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class PaymentCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val USER_SCAN_REQUEST_CODE = 0x7
@@ -448,7 +448,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         revealedNumber?.setOnTextChangeListener(object : VGSTextView.OnTextChangedListener {
             override fun onTextChange(view: VGSTextView, isEmpty: Boolean) {
-                Log.d(MainActivity::class.simpleName, "textIsEmpty: $isEmpty")
+                Log.d(PaymentCheckoutActivity::class.simpleName, "textIsEmpty: $isEmpty")
             }
         })
         revealedNumber?.addOnCopyTextListener(object : VGSTextView.OnTextCopyListener {
@@ -469,7 +469,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             override fun onResponse(response: com.verygoodsecurity.vgsshow.core.network.model.VGSResponse) {
                 setStateLoading(false)
                 responseContainerView.text = "Show Response Code: \n ${response.code}"
-                Log.d(MainActivity::class.simpleName, response.toString())
+                Log.d(PaymentCheckoutActivity::class.simpleName, response.toString())
             }
         })
     }

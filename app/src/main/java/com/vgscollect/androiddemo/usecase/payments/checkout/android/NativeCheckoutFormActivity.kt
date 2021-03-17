@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_default_components.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NativeControlsActivity : AppCompatActivity() {
+class NativeCheckoutFormActivity : AppCompatActivity() {
 
     private val dateFormatter = SimpleDateFormat("MM/yy", Locale.getDefault())
 
