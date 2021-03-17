@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo.vgs
+package com.vgscollect.androiddemo.usecase.payments.demo
 
 import android.content.Context
 import android.graphics.Rect

@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".vgs.MainActivity"/>
+        <activity android:name=".usecase.payments.demo.MainActivity"/>
         <activity android:name=".NativeControlsActivity"/>
-        <activity android:name=".CollectActivity"/>
+        <activity android:name="com.vgscollect.androiddemo.usecase.payments.checkout.collect.CollectCheckoutFormActivity"/>
     </application>
 
 </manifest>

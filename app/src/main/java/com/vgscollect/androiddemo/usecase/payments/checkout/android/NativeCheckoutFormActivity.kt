@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo
+package com.vgscollect.androiddemo.usecase.payments.checkout.android
 
 import android.app.Activity
 import android.os.Bundle
@@ -13,6 +13,7 @@ import androidx.core.widget.doOnTextChanged
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
+import com.vgscollect.androiddemo.R
 import kotlinx.android.synthetic.main.activity_default_components.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -80,16 +81,17 @@ class NativeControlsActivity : AppCompatActivity() {
         }, 150)
     }
 
+    val currentTimeMillis: Long
+        get() = System.currentTimeMillis()
+
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(windowToken, 0)
+    }
+
     companion object {
 
         private const val MAX_CARD_NUMBER_LENGTH = 16
     }
 }
 
-val currentTimeMillis: Long
-    get() = System.currentTimeMillis()
-
-fun View.hideKeyboard() {
-    val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager
-    imm?.hideSoftInputFromWindow(windowToken, 0)
-}

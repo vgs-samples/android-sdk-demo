@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.vgscollect.androiddemo.vgs.MainActivity
+import com.vgscollect.androiddemo.usecase.payments.checkout.collect.CollectCheckoutFormActivity
+import com.vgscollect.androiddemo.usecase.payments.demo.MainActivity
 import kotlinx.android.synthetic.main.activity_intro.*
 
 class IntroActivity: AppCompatActivity(), View.OnClickListener {
@@ -35,7 +36,7 @@ class IntroActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     private fun runCollectUI() {
-        with(Intent(this, CollectActivity::class.java)) {
+        with(Intent(this, CollectCheckoutFormActivity::class.java)) {
             startActivity(this)
         }
     }

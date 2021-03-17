@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo.vgs
+package com.vgscollect.androiddemo.usecase.payments.demo
 
 import com.verygoodsecurity.vgscollect.view.card.CardType
 import com.verygoodsecurity.vgscollect.view.card.formatter.CardMaskAdapter

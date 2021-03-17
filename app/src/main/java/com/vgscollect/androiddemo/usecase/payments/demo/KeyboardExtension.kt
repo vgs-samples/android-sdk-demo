@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo
+package com.vgscollect.androiddemo.usecase.payments.demo
 
 import android.app.Activity
 import android.view.View
