@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_basic_usage.*
 class BasicUsageActivity : AppCompatActivity() {
 
     private val vgsShow = VGSShow.Builder(this, BuildConfig.VAULT_ID).build()
-    private val cardAlias = "tok_sandbox_byZu39KQcVt87GKNLXbmAX"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +24,7 @@ class BasicUsageActivity : AppCompatActivity() {
 
         // Setup view
         val tvCardNumber = VGSTextView(this)
-        tvCardNumber.setContentPath("json.payment_card_number")
+        tvCardNumber.setContentPath("<CONTENT_PATH>")
         tvCardNumber.setHint("Fetching card number...")
         tvCardNumber.setHintTextColor(ContextCompat.getColor(this, android.R.color.black))
         rootView.addView(tvCardNumber)
@@ -43,8 +42,8 @@ class BasicUsageActivity : AppCompatActivity() {
 
         // Make request
         vgsShow.requestAsync(
-            VGSRequest.Builder("/post", VGSHttpMethod.POST)
-                .body(mapOf("payment_card_number" to cardAlias))
+            VGSRequest.Builder("<PATH>", VGSHttpMethod.POST)
+                .body(mapOf(/** <PAYLOAD> */))
                 .build()
         )
     }
