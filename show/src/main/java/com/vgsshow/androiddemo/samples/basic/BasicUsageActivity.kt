@@ -14,7 +14,7 @@ import com.vgsshow.androiddemo.BuildConfig
 import com.vgsshow.androiddemo.R
 import kotlinx.android.synthetic.main.activity_basic_usage.*
 
-class BasicShowUsageActivity : AppCompatActivity() {
+class BasicUsageActivity : AppCompatActivity() {
 
     private val vgsShow = VGSShow.Builder(this, BuildConfig.VAULT_ID).build()
 
@@ -36,7 +36,7 @@ class BasicShowUsageActivity : AppCompatActivity() {
         vgsShow.addOnResponseListener(object : VGSOnResponseListener {
 
             override fun onResponse(response: VGSResponse) {
-                Log.d(this@BasicShowUsageActivity::class.java.simpleName, response.toString())
+                Log.d(this@BasicUsageActivity::class.java.simpleName, response.toString())
             }
         })
 
