@@ -12,7 +12,7 @@ import com.verygoodsecurity.vgsshow.core.network.model.VGSResponse
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import com.vgsshow.androiddemo.BuildConfig
 import com.vgsshow.androiddemo.R
-import kotlinx.android.synthetic.main.activity_basic_usage.*
+import kotlinx.android.synthetic.main.activity_layout.*
 
 class BasicUsageActivity : AppCompatActivity() {
 
@@ -20,7 +20,7 @@ class BasicUsageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_basic_usage)
+        setContentView(R.layout.activity_layout)
 
         // Setup view
         val tvCardNumber = VGSTextView(this)
