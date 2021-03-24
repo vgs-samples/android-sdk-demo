@@ -13,14 +13,13 @@ import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import com.vgsshow.androiddemo.BuildConfig
 import com.vgsshow.androiddemo.R
 import kotlinx.android.synthetic.main.activity_basic_usage.*
-
 class CnameActivity: AppCompatActivity() {
 
     /**
      * Configure custom host name in <a href="https://dashboard.verygoodsecurity.com/">VGS dashboard</a> before using it.
      */
     private val vgsShow = VGSShow.Builder(this, BuildConfig.VAULT_ID)
-        .setHostname("<HOST_NAME>")
+        .setHostname("<HOST_NAME>") // Set custom hostname, for example: https://example.com
         .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
