@@ -48,4 +48,9 @@ class BasicUsageActivity : AppCompatActivity() {
             ))
             .build())
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        vgsShow.onDestroy()
+    }
 }
