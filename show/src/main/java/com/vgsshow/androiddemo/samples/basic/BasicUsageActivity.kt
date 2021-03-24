@@ -42,11 +42,11 @@ class BasicUsageActivity : AppCompatActivity() {
         })
 
         // Make request
-        vgsShow.requestAsync(VGSRequest.Builder("/post", VGSHttpMethod.POST)
-            .body(mapOf(
-                "payment_card_number" to cardAlias
-            ))
-            .build())
+        vgsShow.requestAsync(
+            VGSRequest.Builder("/post", VGSHttpMethod.POST)
+                .body(mapOf("payment_card_number" to cardAlias))
+                .build()
+        )
     }
 
     override fun onDestroy() {
