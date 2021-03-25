@@ -1,4 +1,4 @@
-package com.verygoodsecurity.collectandshow
+package com.verygoodsecurity.androiddemo
 
 import org.junit.Test
 
