@@ -10,7 +10,6 @@ import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.core.network.model.VGSRequest
 import com.verygoodsecurity.vgsshow.core.network.model.VGSResponse
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
-import com.vgsshow.androiddemo.BuildConfig
 import com.vgsshow.androiddemo.R
 import kotlinx.android.synthetic.main.activity_layout.*
 
@@ -19,7 +18,7 @@ class CnameActivity: AppCompatActivity() {
     /**
      * Configure custom host name in <a href="https://dashboard.verygoodsecurity.com/">VGS dashboard</a> before using it.
      */
-    private val vgsShow = VGSShow.Builder(this, BuildConfig.VAULT_ID)
+    private val vgsShow = VGSShow.Builder(this, "<VAULT_ID>")
         .setHostname("<HOST_NAME>") // Set custom hostname, for example: https://example.com
         .build()
 

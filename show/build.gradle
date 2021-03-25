@@ -16,8 +16,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField "String", "VAULT_ID", "\"tntpszqgikn\""
     }
 
     buildTypes {

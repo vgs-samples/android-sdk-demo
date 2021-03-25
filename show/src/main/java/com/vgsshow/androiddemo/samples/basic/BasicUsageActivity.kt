@@ -10,13 +10,12 @@ import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.core.network.model.VGSRequest
 import com.verygoodsecurity.vgsshow.core.network.model.VGSResponse
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
-import com.vgsshow.androiddemo.BuildConfig
 import com.vgsshow.androiddemo.R
 import kotlinx.android.synthetic.main.activity_layout.*
 
 class BasicUsageActivity : AppCompatActivity() {
 
-    private val vgsShow = VGSShow.Builder(this, BuildConfig.VAULT_ID).build()
+    private val vgsShow = VGSShow.Builder(this, "<VAULT_ID>").build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

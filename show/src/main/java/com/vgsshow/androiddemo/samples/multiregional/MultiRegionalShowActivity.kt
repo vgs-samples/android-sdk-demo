@@ -11,7 +11,6 @@ import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.core.network.model.VGSRequest
 import com.verygoodsecurity.vgsshow.core.network.model.VGSResponse
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
-import com.vgsshow.androiddemo.BuildConfig
 import com.vgsshow.androiddemo.R
 import kotlinx.android.synthetic.main.activity_layout.*
 
@@ -58,18 +57,18 @@ class MultiRegionalShowActivity : AppCompatActivity() {
      * Configure VGSShow instance via constructor with sandbox environment and 'eu' region.
      */
     private fun configureViaConstructor() =
-        VGSShow(this, BuildConfig.VAULT_ID, VGSEnvironment.Sandbox("eu"))
+        VGSShow(this, "<VAULT_ID>", VGSEnvironment.Sandbox("eu"))
 
     /**
      * Configure VGSShow instance via constructor with sandbox environment and 'eu' region.
      */
     private fun configureViaConstructorUsingString() =
-        VGSShow(this, BuildConfig.VAULT_ID, "sandbox-eu")
+        VGSShow(this, "<VAULT_ID>", "sandbox-eu")
 
     /**
      * Configure VGSShow instance via builder with sandbox environment and 'eu' region.
      */
-    private fun configureViaBuilder() = VGSShow.Builder(this, BuildConfig.VAULT_ID)
+    private fun configureViaBuilder() = VGSShow.Builder(this, "<VAULT_ID>")
         .setEnvironment(VGSEnvironment.Sandbox("eu"))
         .build()
 }
