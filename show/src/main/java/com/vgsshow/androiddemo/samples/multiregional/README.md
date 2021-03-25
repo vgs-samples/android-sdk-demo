@@ -1,10 +1,10 @@
 # File Provider Sample
 
-This sample of Activity demonstrates how to use manage different files in VGS Collect SDK(get access to the file, attach to SDK, detach, submit, etc.).
+This sample of Activity shows you how to support different regions(EU, US, etc.).
 
 ## Prerequisites
 
-- VGS Collect SDK v.1.1.0
+- VGS Show SDK v.1.1.0
 - Android SDK 19
 
 ## Support
