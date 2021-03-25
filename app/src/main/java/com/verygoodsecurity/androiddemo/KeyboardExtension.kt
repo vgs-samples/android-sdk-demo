@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo
+package com.verygoodsecurity.androiddemo
 
 import android.app.Activity
 import android.view.View

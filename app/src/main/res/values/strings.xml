@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">CollectAndShow</string>
+    <string name="app_name">VGS Collect Demo</string>
+
+    <string name="error_is_not_valid">Field is not valid</string>
+
+    <string name="collect_activity_cards_title">Collecting credit card data</string>
+    <string name="collect_activity_reveal_btn">reveal</string>
+    <string name="collect_activity_submit_btn">collect</string>
+    <string name="collect_activity_attach_btn">Attach file</string>
+    <string name="collect_activity_detach_btn">detach file</string>
+    <string name="collect_activity_state_item">STATE</string>
+    <string name="collect_activity_response_item">RESPONSE</string>
+
+    <string name="error_no_data_to_reveal">There are no any aliases to reveal.</string>
+
+    <string name="scan_item">Scan Card</string>
+
+    <string name="demo_description">Collecting credit card data</string>
+    <string name="card_number">Card number</string>
+    <string name="cvc">CVC</string>
+    <string name="card_holder">Name on card</string>
+    <string name="exp_date">Expiration date</string>
 </resources>

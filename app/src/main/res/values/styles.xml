@@ -1,0 +1,18 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.PaymentField">
+        <item name="android:paddingStart">@dimen/vgs_field_horizontal_padding</item>
+        <item name="android:paddingEnd">@dimen/vgs_field_horizontal_padding</item>
+
+        <item name="android:textSize">@dimen/vgs_field_text_size</item>
+        <item name="textSize">@dimen/vgs_field_text_size</item>
+    </style>
+
+</resources>
