@@ -1,4 +1,4 @@
-# File Provider Sample
+# Extra data & headers
 
 This sample of Activity demonstrates how to add extra data & headers to requests.
 

@@ -1,4 +1,4 @@
-# File Provider Sample
+# Transformation regex
 
 This sample of Activity demonstrates how to use transformations regex.
 

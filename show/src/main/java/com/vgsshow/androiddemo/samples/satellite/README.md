@@ -1,4 +1,4 @@
-# File Provider Sample
+# Integration with VGS-Satellite
 
 This sample of Activity demonstrates how to integrate VGS Show SDK with VGS-Satellite.
 

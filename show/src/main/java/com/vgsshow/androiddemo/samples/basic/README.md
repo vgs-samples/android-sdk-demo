@@ -1,4 +1,4 @@
-# File Provider Sample
+# Basic usage
 
 This sample of Activity demonstrates basic usage of VGS Collect SDK.
 

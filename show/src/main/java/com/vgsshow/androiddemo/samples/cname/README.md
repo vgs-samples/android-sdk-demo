@@ -1,4 +1,4 @@
-# File Provider Sample
+# Custom host name
 
 This sample of Activity demonstrates how to use custom host names.
 

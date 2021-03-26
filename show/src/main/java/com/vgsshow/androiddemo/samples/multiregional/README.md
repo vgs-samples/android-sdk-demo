@@ -1,4 +1,4 @@
-# File Provider Sample
+# Multiregional support
 
 This sample of Activity shows you how to support different regions(EU, US, etc.).
 
