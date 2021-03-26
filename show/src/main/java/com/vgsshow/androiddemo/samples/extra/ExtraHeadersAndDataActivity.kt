@@ -13,7 +13,7 @@ import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import com.vgsshow.androiddemo.R
 import kotlinx.android.synthetic.main.activity_layout.*
 
-class ExtraHeadersActivity : AppCompatActivity() {
+class ExtraHeadersAndDataActivity : AppCompatActivity() {
 
     private val vgsShow = VGSShow.Builder(this, "<VAULT_ID>").build()
 
@@ -35,7 +35,7 @@ class ExtraHeadersActivity : AppCompatActivity() {
         vgsShow.addOnResponseListener(object : VGSOnResponseListener {
 
             override fun onResponse(response: VGSResponse) {
-                Log.d(this@ExtraHeadersActivity::class.java.simpleName, response.toString())
+                Log.d(this@ExtraHeadersAndDataActivity::class.java.simpleName, response.toString())
             }
         })
 
@@ -46,7 +46,12 @@ class ExtraHeadersActivity : AppCompatActivity() {
         // Make request
         vgsShow.requestAsync(
             VGSRequest.Builder("<PATH>", VGSHttpMethod.POST)
-                .body(mapOf(/** <PAYLOAD> */))
+                .body(mapOf(
+                    "<CONTENT_PATH>" to "<ALIAS>",
+                    "<NESTED_EXTRA_DATA_OBJECT>" to mapOf(
+                        "<SOME_EXTRA_DATA_KEY>" to "<SOME_EXTRA_DATA_VALUE>"
+                    )
+                ))
                 .build()
         )
     }
