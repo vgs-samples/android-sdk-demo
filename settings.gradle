@@ -1,2 +1,4 @@
 include ':app'
+include ':show'
+include ':collect'
 rootProject.name='VGS Collect Android SDK Demo'
