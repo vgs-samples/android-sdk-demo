@@ -46,7 +46,7 @@ class ExtraHeadersAndDataActivity : AppCompatActivity() {
         // Make request
         vgsShow.requestAsync(
             VGSRequest.Builder("<PATH>", VGSHttpMethod.POST)
-                .headers(mapOf("<HEADER-NAME>" to "<HEADER_VALUE>")) // Set dynamic extra headers (This headers will be send only with this requests)
+                .headers(mapOf("<HEADER-NAME>" to "<HEADER_VALUE>")) // Set dynamic extra headers (This headers will be send only with this request)
                 .body(mapOf(
                     "<CONTENT_PATH>" to "<ALIAS>",
                     "<NESTED_EXTRA_DATA_OBJECT>" to mapOf(
