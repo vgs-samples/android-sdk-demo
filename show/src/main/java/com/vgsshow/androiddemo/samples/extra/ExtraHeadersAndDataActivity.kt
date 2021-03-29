@@ -40,13 +40,13 @@ class ExtraHeadersAndDataActivity : AppCompatActivity() {
         })
 
         // Set static extra headers (This headers will be send with all requests)
-        vgsShow.setCustomHeader("HEADER", "VALUE")
-        vgsShow.setCustomHeader("HEADER_2", "VALUE_2")
+        vgsShow.setCustomHeader("<HEADER_NAME>", "<HEADER_VALUE>")
+        vgsShow.setCustomHeader("<HEADER_NAME_2>", "<HEADER_VALUE>")
 
         // Make request
         vgsShow.requestAsync(
             VGSRequest.Builder("<PATH>", VGSHttpMethod.POST)
-                .headers(mapOf("<HEADER-NAME>" to "<HEADER_VALUE>")) // Set dynamic extra headers (This headers will be send only with this request)
+                .headers(mapOf("<HEADER_NAME>" to "<HEADER_VALUE>")) // Set dynamic extra headers (This headers will be send only with this request)
                 .body(mapOf(
                     "<CONTENT_PATH>" to "<ALIAS>",
                     "<NESTED_EXTRA_DATA_OBJECT>" to mapOf(
