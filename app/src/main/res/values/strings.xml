@@ -1,17 +1,5 @@
 <resources>
-    <string name="app_name">VGS Demo</string>
-
-<!--Intro Activity    -->
-    <string name="native_controls_btn">Native Controls</string>
-    <string name="native_controls_description">This section demonstrates example of UI based on native Android elements.</string>
-    <string name="collect_controls_btn">Collect Controls</string>
-    <string name="collect_controls_description">This section demonstrates example of UI using VGS Collect SDK elements.</string>
-    <string name="show_controls_btn">Show Controls</string>
-    <string name="show_controls_description">This section demonstrates example of UI based on VGS Show SDK elements.</string>
-    <string name="general_controls_btn">Collect &amp; Show \n Demo</string>
-    <string name="general_controls_description">This section demonstrates example of using VGS Collect SDK with VGS Show SDK.</string>
-
-
+    <string name="app_name">VGS Collect &amp; Show Demo</string>
 
     <string name="error_is_not_valid">Field is not valid</string>
 
