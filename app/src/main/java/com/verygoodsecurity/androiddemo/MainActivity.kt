@@ -27,6 +27,7 @@ import com.verygoodsecurity.vgscollect.view.card.CardType
 import com.verygoodsecurity.vgscollect.view.card.validation.payment.ChecksumAlgorithm
 import com.verygoodsecurity.vgscollect.view.card.validation.rules.PaymentCardNumberRule
 import com.verygoodsecurity.vgscollect.view.card.validation.rules.PersonNameRule
+import com.verygoodsecurity.vgscollect.view.core.serializers.VGSExpDateSeparateSerializer
 import com.verygoodsecurity.vgscollect.widget.*
 import com.verygoodsecurity.vgsshow.VGSShow
 import com.verygoodsecurity.vgsshow.core.VGSEnvironment
@@ -151,6 +152,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setupCardExpDateField() {
         vgsForm.bindView(cardExpDateField)
+
+        cardExpDateField?.setSerializer(VGSExpDateSeparateSerializer(
+            "card_data.personal_data.month",
+            "card_data.personal_data.year"
+        ))
 
         cardExpDateField?.apply {
             setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
