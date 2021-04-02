@@ -24,10 +24,9 @@
             android:id="@+id/etCardNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/half_default_padding"
+            android:padding="@dimen/field_inner_padding"
             app:textSize="@dimen/components_text_size"
             app:cardBrandIconGravity="end"
-            app:brandIconVisibility="ifDetected"
             app:inputType="number"
             app:numberDivider=" "
             app:fieldName="cardNumber"
@@ -40,7 +39,6 @@
     <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/half_default_padding"
         android:textColorHint="@android:color/darker_gray"
         app:hintTextColor="@color/colorAccent"
         app:errorEnabled="true"
@@ -54,7 +52,7 @@
             android:id="@+id/etCardHolderName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/half_default_padding"
+            android:padding="@dimen/field_inner_padding"
             app:imeOptions="actionNext"
             app:fieldName="card_data.personal_data.cardHolder"
             app:inputType="text"
@@ -67,7 +65,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/half_default_padding"
         android:baselineAligned="false"
         android:orientation="horizontal">
 
@@ -90,7 +87,7 @@
                 android:id="@+id/etDate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/half_default_padding"
+                android:padding="@dimen/field_inner_padding"
                 app:textSize="@dimen/components_text_size"
                 app:outputPattern="MM/yy"
                 app:fieldName="expDate"
@@ -121,7 +118,7 @@
                 android:id="@+id/etCVC"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/half_default_padding"
+                android:padding="@dimen/field_inner_padding"
                 app:textSize="@dimen/components_text_size"
                 app:previewIconVisibility="always"
                 app:imeOptions="actionDone"
@@ -136,10 +133,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginTop="@dimen/default_padding"
         android:backgroundTint="@color/colorAccent"
         android:text="Add card"
-        android:onClick="submitData"
         android:textAllCaps="false"
-        android:textSize="18sp" />
+        android:textSize="@dimen/components_text_size" />
+
 </LinearLayout>
