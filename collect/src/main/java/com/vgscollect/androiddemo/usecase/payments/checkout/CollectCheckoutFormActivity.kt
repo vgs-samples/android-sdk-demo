@@ -32,15 +32,11 @@ class CollectCheckoutFormActivity : AppCompatActivity() {
     }
 
     private fun setupCollect() {
-        vgsForm.bindView(etCardNumber)
-        vgsForm.bindView(etCardHolderName)
-        vgsForm.bindView(etDate)
-        vgsForm.bindView(etCVC)
+        vgsForm.bindView(etCardNumber, etCardHolderName, etDate, etCVC)
         vgsForm.addOnResponseListeners(object : VgsCollectResponseListener {
             override fun onResponse(response: VGSResponse?) {
                 Log.d(InputFieldView::class.simpleName.toString(), response.toString())
             }
         })
     }
-
 }
