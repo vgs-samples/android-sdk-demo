@@ -24,19 +24,16 @@ class CollectCheckoutFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payments_checkout_collect_components)
-        setupCollect()
-    }
 
-    fun submitData(v: View) {
-        vgsForm.asyncSubmit("/post", HTTPMethod.POST)
-    }
-
-    private fun setupCollect() {
         vgsForm.bindView(etCardNumber, etCardHolderName, etDate, etCVC)
         vgsForm.addOnResponseListeners(object : VgsCollectResponseListener {
             override fun onResponse(response: VGSResponse?) {
                 Log.d(InputFieldView::class.simpleName.toString(), response.toString())
             }
         })
+    }
+
+    fun submitData(v: View) {
+        vgsForm.asyncSubmit("/post", HTTPMethod.POST)
     }
 }
