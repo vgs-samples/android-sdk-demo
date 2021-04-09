@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:paddingStart="32dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="32dp"
+    android:paddingBottom="32dp">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone" />
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:id="@+id/tilFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="First name"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
+            android:id="@+id/etFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:fieldName="data.attributes.details.first_name"
+            app:text="Test First name" />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:id="@+id/tilLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="Last name"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
+            android:id="@+id/etLastName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:fieldName="data.attributes.details.last_name"
+            app:text="Test Last name" />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:id="@+id/tilCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="Card number"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
+            android:id="@+id/etCardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:fieldName="data.attributes.details.number"
+            app:numberDivider="-"
+            app:text="4111111111111111" />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:id="@+id/tilExpirationDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="Expiration date"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
+            android:id="@+id/etExpirationDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:datePattern="MM/YYYY"
+            app:datePickerModes="input"
+            app:fieldName="data.attributes.details.data"
+            app:text="11/2022" />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:id="@+id/tilCVC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="CVC"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
+            android:id="@+id/etCVC"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:fieldName="data.attributes.details.verification_value"
+            app:text="111" />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="submit"
+        android:text="Submit"
+        tools:ignore="HardcodedText" />
+</LinearLayout>
