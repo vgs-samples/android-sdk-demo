@@ -6,7 +6,7 @@ Install [multiplexing](https://github.com/verygoodsecurity/multiplexing/edit/mas
 
 ## Prerequisites
 
-- VGS Collect SDK v.1.2.1
+- VGS Collect SDK v.1.6.4
 - Android SDK 19
 
 ## Support

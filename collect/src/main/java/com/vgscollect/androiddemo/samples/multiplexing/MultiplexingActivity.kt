@@ -83,11 +83,7 @@ class MultiplexingActivity : AppCompatActivity(), VgsCollectResponseListener,
         etCVC?.addOnTextChangeListener(this)
 
         // Bind VGS view to VGSCollect
-        vgsCollect.bindView(etFirstName)
-        vgsCollect.bindView(etLastName)
-        vgsCollect.bindView(etCardNumber)
-        vgsCollect.bindView(etExpirationDate)
-        vgsCollect.bindView(etCVC)
+        vgsCollect.bindView(etFirstName, etLastName, etCardNumber, etExpirationDate, etCVC)
     }
 
     private inline fun validateFieldsAndRun(action: () -> Unit) {
