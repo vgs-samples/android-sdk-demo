@@ -12,7 +12,7 @@ Install [multiplexing](https://github.com/verygoodsecurity/multiplexing/edit/mas
 ## Flow diagram
 
 <p align="center">
-  <img src="multiplexing-runtime-flow.png" />
+  <img src="./collect/multiplexing-runtime-flow.png" />
 </p>
 
 ## Support
