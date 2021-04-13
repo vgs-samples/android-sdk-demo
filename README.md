@@ -43,3 +43,14 @@ Instruction for this step you can find <a href="https://www.verygoodsecurity.com
 - <a href="https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/overview" target="_blank">Documentation</a> 
 - <a href="https://github.com/verygoodsecurity/vgs-collect-android" target="_blank">Repo</a> 
 
+### Samples
+
+|Link |Description|
+|-----|-----------|
+| [SSN Field Sample](https://github.com/verygoodsecurity/android-sdk-demo/tree/master/collect/src/main/java/com/vgscollect/androiddemo/samples/ssn)| This sample demonstrates basic example of how manage SSN Field. |
+| [Payment Card Number Sample](https://github.com/verygoodsecurity/android-sdk-demo/tree/master/collect/src/main/java/com/vgscollect/androiddemo/samples/paymentcardnumber)| This sample demonstrates basic example of how use Payment Card Number field. |
+| [Multiregional Support Sample](https://github.com/verygoodsecurity/android-sdk-demo/tree/master/collect/src/main/java/com/vgscollect/androiddemo/samples/multiregional)| This sample of Activity shows you how to support different regions(EU, US). |
+| [File Provider Sample](https://github.com/verygoodsecurity/android-sdk-demo/tree/master/collect/src/main/java/com/vgscollect/androiddemo/samples/fileprovider)| This sample demonstrates how to use manage different files in VGS Collect SDK(get access to the file, attach to SDK, detach, submit). |
+| [Field States Tracking Sample](https://github.com/verygoodsecurity/android-sdk-demo/tree/master/collect/src/main/java/com/vgscollect/androiddemo/samples/states)| This sample shows how to handle fields states. |
+| [Multiplexing Sample](https://github.com/verygoodsecurity/android-sdk-demo/tree/master/collect/src/main/java/com/vgscollect/androiddemo/samples/multiplexing)| This sample of Activity shows you how to gather and send data for multiplexing. |
+
