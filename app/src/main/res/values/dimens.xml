@@ -4,7 +4,6 @@
     <dimen name="half_default_padding">8dp</dimen>
     <dimen name="button_size">48dp</dimen>
 
-
     <dimen name="collect_activity_cards_title_text_size">20dp</dimen>
     <dimen name="field_wrapper_height">52dp</dimen>
 
@@ -20,9 +19,12 @@
     <dimen name="vgs_field_horizontal_padding">21dp</dimen>
     <dimen name="vgs_field_vertical_padding">2dp</dimen>
     <dimen name="vgs_field_text_size">14dp</dimen>
+    <dimen name="corner_radius">4dp</dimen>
 
     <dimen name="password_icon_size">48dp</dimen>
 
     <dimen name="card_preview_width">300dp</dimen>
     <dimen name="card_preview_height">190dp</dimen>
+
+    <dimen name="components_text_size">16sp</dimen>
 </resources>

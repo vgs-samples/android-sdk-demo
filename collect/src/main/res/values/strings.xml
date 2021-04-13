@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">VGS Collect Demo</string>
+
+    <!--    Intro Activity    -->
+    <string name="native_controls_btn">Native Controls</string>
+    <string name="native_controls_description">This section demonstrates example of UI based on native Android elements.</string>
+    <string name="collect_controls_btn">Collect Controls</string>
+    <string name="collect_controls_description">This section demonstrates example of UI using VGS Collect SDK elements.</string>
+    <string name="show_controls_btn">Show Controls</string>
+    <string name="show_controls_description">This section demonstrates example of UI based on VGS Show SDK elements.</string>
+    <string name="general_controls_btn">Collect &amp; Show \n Demo</string>
+    <string name="general_controls_description">This section demonstrates example of using VGS Collect SDK with VGS Show SDK.</string>
+
+    <!--    payment form-->
+    <string name="card_number">Card number</string>
+    <string name="cvc">CVC</string>
+    <string name="card_holder">Name on card</string>
+    <string name="exp_date">Expiration date</string>
+
 </resources>

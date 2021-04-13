@@ -6,4 +6,14 @@
 
     <dimen name="vgs_field_horizontal_padding">21dp</dimen>
     <dimen name="vgs_field_text_size">14dp</dimen>
+
+    <!--Intro Activity    -->
+    <dimen name="into_screen_width_btn">220dp</dimen>
+    <dimen name="into_screen_width_description">320dp</dimen>
+
+
+    <dimen name="components_text_size">16sp</dimen>
+    <dimen name="field_inner_padding">12dp</dimen>
+
+    <dimen name="corner_radius">4dp</dimen>
 </resources>
