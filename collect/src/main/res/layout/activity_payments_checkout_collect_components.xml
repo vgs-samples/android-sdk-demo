@@ -11,54 +11,38 @@
     <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@android:color/darker_gray"
+        style="@style/VGSCollect.Widget.TextInputLayout.OutlineBox"
         app:hint="@string/card_number"
-        app:hintTextColor="@color/colorAccent"
-        app:hintEnabled="true"
-        app:boxCornerRadius="@dimen/corner_radius"
-        app:errorEnabled="true"
-        app:boxBackgroundModes="outline"
-        app:boxStrokeColor="@color/colorAccent">
+        app:errorEnabled="true">
 
         <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
             android:id="@+id/etCardNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/field_inner_padding"
-            app:textSize="@dimen/components_text_size"
+            style="@style/VGSCollect.Widget.TextInputEditText.OutlineBox"
             app:cardBrandIconGravity="end"
             app:inputType="number"
             app:numberDivider=" "
             app:fieldName="cardNumber"
-            app:imeOptions="actionNext"
-            app:textColor="@android:color/black"
-            android:nextFocusForward="@+id/etCardHolderName"/>
+            app:imeOptions="actionDone"/>
 
     </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
     <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@android:color/darker_gray"
-        app:hintTextColor="@color/colorAccent"
+        style="@style/VGSCollect.Widget.TextInputLayout.OutlineBox"
         app:errorEnabled="true"
-        app:boxCornerRadius="@dimen/corner_radius"
-        app:endIconTint="@color/colorAccent"
-        app:hint="@string/card_holder"
-        app:boxBackgroundModes="outline"
-        app:boxStrokeColor="@color/colorAccent">
+        app:hint="@string/card_holder">
 
         <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
             android:id="@+id/etCardHolderName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/field_inner_padding"
-            app:imeOptions="actionNext"
+            style="@style/VGSCollect.Widget.TextInputEditText.OutlineBox"
+            app:imeOptions="actionDone"
             app:fieldName="card_data.personal_data.cardHolder"
-            app:inputType="text"
-            app:textSize="@dimen/components_text_size"
-            android:nextFocusDown="@id/etDate"
-            android:nextFocusForward="@+id/etDate" />
+            app:inputType="text"/>
 
     </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
@@ -71,32 +55,23 @@
         <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/VGSCollect.Widget.TextInputLayout.OutlineBox"
             android:layout_weight="1"
             app:hint="@string/exp_date"
             android:layout_marginEnd="@dimen/half_default_padding"
-            android:textColorHint="@android:color/darker_gray"
-            app:hintEnabled="true"
-            app:hintTextColor="@color/colorAccent"
-            app:errorEnabled="true"
-            app:boxCornerRadius="@dimen/corner_radius"
-            app:endIconTint="@color/colorAccent"
-            app:boxBackgroundModes="outline"
-            app:boxStrokeColor="@color/colorAccent">
+            app:errorEnabled="true">
 
             <com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
                 android:id="@+id/etDate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/field_inner_padding"
-                app:textSize="@dimen/components_text_size"
+                style="@style/VGSCollect.Widget.TextInputEditText.OutlineBox"
                 app:outputPattern="MM/yy"
                 app:fieldName="expDate"
-                android:nextFocusDown="@+id/etCVC"
-                app:imeOptions="actionNext"
+                app:imeOptions="actionDone"
                 app:datePickerModes="calendar"
                 app:formatterMode="strict"
-                app:datePattern="MM/yy"
-                android:nextFocusForward="@+id/cardCVCField" />
+                app:datePattern="MM/yy"/>
 
         </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
 
@@ -105,21 +80,17 @@
             android:id="@+id/cardCVCFieldLay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            style="@style/VGSCollect.Widget.TextInputLayout.OutlineBox"
             android:layout_weight="1"
             android:layout_marginStart="@dimen/half_default_padding"
-            app:hintEnabled="true"
-            app:boxCornerRadius="@dimen/corner_radius"
             app:errorEnabled="true"
-            app:hint="@string/cvc"
-            app:boxBackgroundModes="outline"
-            app:boxStrokeColor="@color/colorAccent">
+            app:hint="@string/cvc">
 
             <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
                 android:id="@+id/etCVC"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/field_inner_padding"
-                app:textSize="@dimen/components_text_size"
+                style="@style/VGSCollect.Widget.TextInputEditText.OutlineBox"
                 app:previewIconVisibility="always"
                 app:imeOptions="actionDone"
                 app:fieldName="card_data.cardCvc"/>
