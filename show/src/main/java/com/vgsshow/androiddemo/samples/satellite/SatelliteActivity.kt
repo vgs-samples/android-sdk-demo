@@ -13,16 +13,18 @@ import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import com.vgsshow.androiddemo.R
 import kotlinx.android.synthetic.main.activity_layout.*
 
-class SatelliteActivity: AppCompatActivity() {
+class SatelliteActivity : AppCompatActivity() {
 
     /**
      * Read VGS Show SDK integration with VGS-Satellite
      * <a href="https://www.verygoodsecurity.com/docs/vgs-show/android-sdk/vgs-satellite-integration/">guide</a>.
      */
-    private val vgsShow = VGSShow.Builder(this, "<VAULT_ID>")
-        .setHostname("<HOST>") // Set VGS-Satellite host, if you run app on AVD it should be 10.0.2.2(localhost alias), read documentation for more examples.
-        .setPort(9098) // Set VGS-Satellite port, 9098 is default VGS-Satellite reverse proxy port, set correct port if you have edited your VGS-Satellite configuration.
-        .build()
+    private val vgsShow: VGSShow by lazy {
+        VGSShow.Builder(this, "<VAULT_ID>")
+            .setHostname("<HOST>") // Set VGS-Satellite host, if you run app on AVD it should be 10.0.2.2(localhost alias), read documentation for more examples, , don't forget to add network security config.
+            .setPort(9098) // Set VGS-Satellite port, 9098 is default VGS-Satellite reverse proxy port, set correct port if you have edited your VGS-Satellite configuration.
+            .build()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
