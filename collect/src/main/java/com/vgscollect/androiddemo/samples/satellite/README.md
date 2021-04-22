@@ -4,7 +4,7 @@ This sample of Activity demonstrates how to integrate VGS Collect SDK with VGS-S
 
 ## Prerequisites
 
-- VGS Show SDK v.1.5.0
+- VGS Collect SDK v.1.5.0
 - Android SDK 19
 
 ## Support
