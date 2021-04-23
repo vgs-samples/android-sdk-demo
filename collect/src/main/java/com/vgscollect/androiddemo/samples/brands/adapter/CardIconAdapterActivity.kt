@@ -1,18 +1,19 @@
-package com.vgscollect.androiddemo.samples.brands.custom
+package com.vgscollect.androiddemo.samples.brands.adapter
 
+import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.verygoodsecurity.vgscollect.core.VGSCollect
-import com.verygoodsecurity.vgscollect.view.card.BrandParams
-import com.verygoodsecurity.vgscollect.view.card.CardBrand
-import com.verygoodsecurity.vgscollect.view.card.validation.payment.ChecksumAlgorithm
+import com.verygoodsecurity.vgscollect.view.card.CardType
+import com.verygoodsecurity.vgscollect.view.card.icon.CardIconAdapter
 import com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
 import com.vgscollect.androiddemo.R
 import kotlinx.android.synthetic.main.activity_layout.*
 
-class CustomBrandActivity : AppCompatActivity() {
+class CardIconAdapterActivity : AppCompatActivity() {
 
     private val vgsCollect: VGSCollect by lazy {
         VGSCollect.Builder(this, "<VAULT_ID>").create()
@@ -35,21 +36,22 @@ class CustomBrandActivity : AppCompatActivity() {
         // Subscribe view
         vgsCollect.bindView(vgsEtCardNumber)
 
-        // Create custom brand
-        val brandParams = BrandParams(
-            "## #### ## #### #### ###",
-            ChecksumAlgorithm.LUHN,
-            arrayOf(19),
-            arrayOf(3)
-        )
-        val cardBrand = CardBrand(
-            "^99",
-            "Custom Brand",
-            R.drawable.ic_visa_dark,
-            brandParams
-        )
+        // Add card icon adapter and override VISA card icon
+        vgsEtCardNumber.setCardIconAdapter(object : CardIconAdapter(this) {
 
-        // Add custom brand
-        vgsEtCardNumber.addCardBrand(cardBrand)
+            private val iconBounds: Rect = Rect(
+                0,
+                0,
+                resources.getDimensionPixelSize(R.dimen.icon_size),
+                resources.getDimensionPixelSize(R.dimen.icon_size)
+            )
+
+            override fun getIcon(cardType: CardType, name: String?, resId: Int, r: Rect): Drawable {
+                if (cardType == CardType.VISA) {
+                    return getDrawable(R.drawable.ic_custom_visa).apply { bounds = iconBounds }
+                }
+                return super.getIcon(cardType, name, resId, r)
+            }
+        })
     }
 }

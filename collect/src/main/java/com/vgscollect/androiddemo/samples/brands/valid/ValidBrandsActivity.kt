@@ -1,7 +1,9 @@
 package com.vgscollect.androiddemo.samples.brands.valid
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.setPadding
 import com.verygoodsecurity.vgscollect.core.VGSCollect
 import com.verygoodsecurity.vgscollect.util.extension.toCardBrand
 import com.verygoodsecurity.vgscollect.view.card.BrandParams
@@ -23,10 +25,13 @@ class ValidBrandsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_layout)
 
         // Setup view
-        val vgsEtCardNumber = VGSCardNumberEditText(this)
-        vgsEtCardNumber.setFieldName("<FIELD_NAME>")
-        vgsEtCardNumber.setHint("Card number")
-        vgsEtCardNumber.setDivider('-')
+        val vgsEtCardNumber = VGSCardNumberEditText(this).apply {
+            setFieldName("<FIELD_NAME>")
+            setHint("Card number")
+            setDivider('-')
+            setCardBrandIconGravity(Gravity.END)
+            setPadding(resources.getDimensionPixelSize(R.dimen.padding))
+        }
         rootView.addView(vgsEtCardNumber)
 
         // Subscribe view
