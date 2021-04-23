@@ -22,13 +22,16 @@ class CnameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
 
-        // Init collect, configure custom host name in <a href="https://dashboard.verygoodsecurity.com/">VGS dashboard</a> before using it.
+        /*
+         * Init collect.
+         * Configure custom host name in [VGS dashboard](https://dashboard.verygoodsecurity.com/) before using it.
+         */
         vgsCollect = VGSCollect.Builder(this, "<vault_id>")
             .setEnvironment("<environment>")
             .setHostname("<host>") // Set custom hostname, for example: https://example.com
             .create()
 
-        // Setup view
+        /* Setup view */
         val vgsEtCardNumber = VGSCardNumberEditText(this).apply {
             setFieldName("<field_name>")
             setHint("Card number")

@@ -34,7 +34,7 @@ class PersonNameInitActivity : AppCompatActivity() {
         // Subscribe view
         vgsCollect.bindView(vgsEtPersonName)
 
-        // Add person name validation rule, supported from VGS Collect SDK v1.1.16 or higher
+        // Add person name validation rule, supported from VGS Collect SDK v1.1.16
         vgsEtPersonName.addRule(
             PersonNameRule.ValidationBuilder()
                 .setAllowableMinLength(3)

@@ -38,7 +38,9 @@ class ExpirationDateInitActivity : AppCompatActivity() {
         // Set date picker mode CALENDAR, SPINNER, INPUT or DEFAULT
         vgsEtExpirationDate.setDatePickerMode(DatePickerMode.INPUT)
 
-        // Set date serializer. Allows VGS Collect SDK to send selected month and year as separate fields. Supported from VGS Collect SDK v1.6.4
+        // Set date serializer.
+        // Allows VGS Collect SDK to send selected month and year as separate fields.
+        // Supported from VGS Collect SDK v1.6.4
         vgsEtExpirationDate.setSerializer(
             VGSExpDateSeparateSerializer(
                 "<MONTH_FIELD_NAME>",

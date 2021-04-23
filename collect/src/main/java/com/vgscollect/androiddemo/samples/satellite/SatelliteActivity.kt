@@ -22,11 +22,14 @@ class SatelliteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
 
-        // Init collect, read VGS Collect SDK integration with VGS-Satellite https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/vgs-satellite-integration/
+        /* Init collect
+         * Read VGS Collect SDK integration with VGS-Satellite documentation:
+         * https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/vgs-satellite-integration/
+         */
         vgsCollect = VGSCollect.Builder(this, "<vault_id>")
             .setEnvironment("<environment>")
-            .setHostname("<host>") // Set VGS-Satellite host, if you run app on AVD it should be 10.0.2.2(localhost alias), read documentation for more examples, don't forget to add network security config
-            .setPort(9098) // Set VGS-Satellite port, 9098 is default VGS-Satellite reverse proxy port, set correct port if you have edited your VGS-Satellite configuration.
+            .setHostname("<host>") // Set VGS-Satellite host
+            .setPort(9098) // Set VGS-Satellite port
             .create()
 
         // Setup view
