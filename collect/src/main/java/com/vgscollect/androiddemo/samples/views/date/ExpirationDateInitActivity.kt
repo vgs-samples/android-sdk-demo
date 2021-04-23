@@ -15,17 +15,18 @@ import kotlinx.android.synthetic.main.activity_layout.*
 
 class ExpirationDateInitActivity : AppCompatActivity() {
 
-    private val vgsCollect: VGSCollect by lazy {
-        VGSCollect.Builder(this, "<VAULT_ID>").create()
-    }
+    private lateinit var vgsCollect: VGSCollect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
 
+        // Init collect
+        vgsCollect = VGSCollect(this, "<vault_id>", "<environment>")
+
         // Create expiration date view
         val vgsEtExpirationDate = ExpirationDateEditText(this).apply {
-            setFieldName("<FIELD_NAME>")
+            setFieldName("<field_name>")
             setHint("Date")
             setPadding(resources.getDimensionPixelSize(R.dimen.padding))
         }
@@ -45,7 +46,7 @@ class ExpirationDateInitActivity : AppCompatActivity() {
             )
         )
 
-        // Set date output regex. Date will be send to beck-end in specified format.
+        // Set date output regex. Date will be send to back-end in specified format.
         vgsEtExpirationDate.setOutputRegex("MM/yyyy")
 
         // Add field state change listener

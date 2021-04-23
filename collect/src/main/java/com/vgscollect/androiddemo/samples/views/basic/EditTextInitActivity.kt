@@ -14,17 +14,18 @@ import kotlinx.android.synthetic.main.activity_layout.*
 
 class EditTextInitActivity : AppCompatActivity() {
 
-    private val vgsCollect: VGSCollect by lazy {
-        VGSCollect.Builder(this, "<VAULT_ID>").create()
-    }
+    private lateinit var vgsCollect: VGSCollect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
 
+        // Init collect
+        vgsCollect = VGSCollect(this, "<vault_id>", "<environment>")
+
         // Create edit text view
         val vgsEditText = VGSEditText(this).apply {
-            setFieldName("<FIELD_NAME>")
+            setFieldName("<field_name>")
             setHint("Address")
             setPadding(resources.getDimensionPixelSize(R.dimen.padding))
         }
@@ -35,10 +36,10 @@ class EditTextInitActivity : AppCompatActivity() {
 
         // Add validation rule, supported from VGS Collect SDK v1.6.5
         vgsEditText.addRule(
-           VGSInfoRule.ValidationBuilder()
-               .setAllowableMinLength(10)
-               .setAllowableMaxLength(30)
-               .build()
+            VGSInfoRule.ValidationBuilder()
+                .setAllowableMinLength(10)
+                .setAllowableMaxLength(30)
+                .build()
         )
 
         // Add field state change listener

@@ -16,22 +16,21 @@ import kotlinx.android.synthetic.main.activity_layout.*
 
 class CnameActivity : AppCompatActivity() {
 
-    /**
-     * Configure custom host name in <a href="https://dashboard.verygoodsecurity.com/">VGS dashboard</a> before using it.
-     */
-    private val vgsCollect: VGSCollect by lazy {
-        VGSCollect.Builder(this, "<VAULT_ID>")
-            .setHostname("<HOST_NAME>") // Set custom hostname, for example: https://example.com
-            .create()
-    }
+    private lateinit var vgsCollect: VGSCollect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
 
+        // Init collect, configure custom host name in <a href="https://dashboard.verygoodsecurity.com/">VGS dashboard</a> before using it.
+        vgsCollect = VGSCollect.Builder(this, "<vault_id>")
+            .setEnvironment("<environment>")
+            .setHostname("<host>") // Set custom hostname, for example: https://example.com
+            .create()
+
         // Setup view
         val vgsEtCardNumber = VGSCardNumberEditText(this).apply {
-            setFieldName("<FIELD_NAME>")
+            setFieldName("<field_name>")
             setHint("Card number")
             setDivider('-')
             setCardBrandIconGravity(Gravity.END)

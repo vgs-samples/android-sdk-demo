@@ -24,7 +24,7 @@ class SubmitRequestActivity : AppCompatActivity() {
 
         // Setup view
         val vgsEtCardNumber = VGSCardNumberEditText(this).apply {
-            setFieldName("<FIELD_NAME>")
+            setFieldName("<field_name>")
             setHint("Card number")
             setDivider('-')
             setCardBrandIconGravity(Gravity.END)

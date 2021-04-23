@@ -16,24 +16,22 @@ import kotlinx.android.synthetic.main.activity_layout.*
 
 class SatelliteActivity : AppCompatActivity() {
 
-    /**
-     * Read VGS Collect SDK integration with VGS-Satellite
-     * <a href="https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/vgs-satellite-integration/">guide</a>.
-     */
-    private val vgsCollect: VGSCollect by lazy {
-        VGSCollect.Builder(this, "<VAULT_ID>")
-            .setHostname("<HOST>") // Set VGS-Satellite host, if you run app on AVD it should be 10.0.2.2(localhost alias), read documentation for more examples, don't forget to add network security config
-            .setPort(9098) // Set VGS-Satellite port, 9098 is default VGS-Satellite reverse proxy port, set correct port if you have edited your VGS-Satellite configuration.
-            .create()
-    }
+    private lateinit var vgsCollect: VGSCollect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
 
+        // Init collect, read VGS Collect SDK integration with VGS-Satellite https://www.verygoodsecurity.com/docs/vgs-collect/android-sdk/vgs-satellite-integration/
+        vgsCollect = VGSCollect.Builder(this, "<vault_id>")
+            .setEnvironment("<environment>")
+            .setHostname("<host>") // Set VGS-Satellite host, if you run app on AVD it should be 10.0.2.2(localhost alias), read documentation for more examples, don't forget to add network security config
+            .setPort(9098) // Set VGS-Satellite port, 9098 is default VGS-Satellite reverse proxy port, set correct port if you have edited your VGS-Satellite configuration.
+            .create()
+
         // Setup view
         val vgsEtCardNumber = VGSCardNumberEditText(this).apply {
-            setFieldName("<FIELD_NAME>")
+            setFieldName("<field_name>")
             setHint("Card number")
             setDivider('-')
             setCardBrandIconGravity(Gravity.END)

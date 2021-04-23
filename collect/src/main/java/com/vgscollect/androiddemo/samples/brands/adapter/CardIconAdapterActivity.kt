@@ -15,17 +15,18 @@ import kotlinx.android.synthetic.main.activity_layout.*
 
 class CardIconAdapterActivity : AppCompatActivity() {
 
-    private val vgsCollect: VGSCollect by lazy {
-        VGSCollect.Builder(this, "<VAULT_ID>").create()
-    }
+    private lateinit var vgsCollect: VGSCollect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
 
+        // Init collect
+        vgsCollect = VGSCollect(this, "<vault_id>", "<environment>")
+
         // Setup view
         val vgsEtCardNumber = VGSCardNumberEditText(this).apply {
-            setFieldName("<FIELD_NAME>")
+            setFieldName("<field_name>")
             setHint("Card number")
             setDivider('-')
             setCardBrandIconGravity(Gravity.END)

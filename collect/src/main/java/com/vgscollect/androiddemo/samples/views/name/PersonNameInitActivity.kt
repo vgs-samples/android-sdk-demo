@@ -14,17 +14,18 @@ import kotlinx.android.synthetic.main.activity_layout.*
 
 class PersonNameInitActivity : AppCompatActivity() {
 
-    private val vgsCollect: VGSCollect by lazy {
-        VGSCollect.Builder(this, "<VAULT_ID>").create()
-    }
+    private lateinit var vgsCollect: VGSCollect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
 
+        // Init collect
+        vgsCollect = VGSCollect(this, "<vault_id>", "<environment>")
+
         // Create person name view
         val vgsEtPersonName = PersonNameEditText(this).apply {
-            setFieldName("<FIELD_NAME>")
+            setFieldName("<field_name>")
             setHint("Person name")
             setPadding(resources.getDimensionPixelSize(R.dimen.padding))
         }
@@ -35,10 +36,10 @@ class PersonNameInitActivity : AppCompatActivity() {
 
         // Add person name validation rule, supported from VGS Collect SDK v1.1.16 or higher
         vgsEtPersonName.addRule(
-           PersonNameRule.ValidationBuilder()
-               .setAllowableMinLength(3)
-               .setAllowableMaxLength(20)
-               .build()
+            PersonNameRule.ValidationBuilder()
+                .setAllowableMinLength(3)
+                .setAllowableMaxLength(20)
+                .build()
         )
 
         // Add field state change listener
