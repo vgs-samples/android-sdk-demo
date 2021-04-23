@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo.samples.ssn
+package com.vgscollect.androiddemo.samples.views.ssn
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
