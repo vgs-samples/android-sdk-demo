@@ -18,7 +18,7 @@ class CompareContentActivity : AppCompatActivity() {
 
         vgsForm = VGSCollect(this, "<vault_id>", "<environment>")
 
-        vgsForm.bindView(vgsEtPassword) // You should bind only view that will be send to beck-end
+        vgsForm.bindView(vgsEtPassword) // Bind a view that will be sent to a back-end.
 
         vgsEtVerifyPassword?.addOnTextChangeListener(object : InputFieldView.OnTextChangedListener {
 
