@@ -1,10 +1,10 @@
-# Card Number Field Sample
+# Expiration Date Field Sample
 
-This sample of Activity demonstrates how to use card number field.
+This sample of Activity demonstrates how to use expiration date field.
 
 ## Prerequisites
 
-- VGS Collect SDK v.1.0.0
+- VGS Collect SDK v.1.0.6
 - Android SDK 19
 
 ## Support

@@ -1,6 +1,6 @@
-# Card Number Field Sample
+# Person Name Field Sample
 
-This sample of Activity demonstrates how to use card number field.
+This sample of Activity demonstrates how to use person name field.
 
 ## Prerequisites
 

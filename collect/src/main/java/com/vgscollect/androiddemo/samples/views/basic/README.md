@@ -1,6 +1,6 @@
-# Card Number Field Sample
+# Edit Text Field Sample
 
-This sample of Activity demonstrates how to use card number field.
+This sample of Activity demonstrates how to use edit text field.
 
 ## Prerequisites
 
