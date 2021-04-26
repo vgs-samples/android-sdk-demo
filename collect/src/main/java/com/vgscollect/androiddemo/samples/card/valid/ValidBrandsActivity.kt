@@ -1,17 +1,20 @@
-package com.vgscollect.androiddemo.samples.brands.mask
+package com.vgscollect.androiddemo.samples.card.valid
 
 import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.verygoodsecurity.vgscollect.core.VGSCollect
+import com.verygoodsecurity.vgscollect.util.extension.toCardBrand
+import com.verygoodsecurity.vgscollect.view.card.BrandParams
+import com.verygoodsecurity.vgscollect.view.card.CardBrand
 import com.verygoodsecurity.vgscollect.view.card.CardType
-import com.verygoodsecurity.vgscollect.view.card.formatter.CardMaskAdapter
+import com.verygoodsecurity.vgscollect.view.card.validation.payment.ChecksumAlgorithm
 import com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
 import com.vgscollect.androiddemo.R
 import kotlinx.android.synthetic.main.activity_layout.*
 
-class CardMaskAdapterActivity : AppCompatActivity() {
+class ValidBrandsActivity : AppCompatActivity() {
 
     private lateinit var vgsCollect: VGSCollect
 
@@ -35,18 +38,21 @@ class CardMaskAdapterActivity : AppCompatActivity() {
         // Subscribe view
         vgsCollect.bindView(vgsEtCardNumber)
 
-        // Add card mask adapter and override VISA mask
-        vgsEtCardNumber.setCardMaskAdapter(object : CardMaskAdapter() {
+        // Create custom brand
+        val brandParams = BrandParams(
+            "## #### ## #### #### ###",
+            ChecksumAlgorithm.LUHN,
+            arrayOf(19),
+            arrayOf(3)
+        )
+        val cardBrand = CardBrand(
+            "^99",
+            "Custom Brand",
+            R.drawable.ic_visa_dark,
+            brandParams
+        )
 
-            override fun getMask(
-                cardType: CardType,
-                name: String,
-                bin: String,
-                mask: String
-            ): String = when (cardType) {
-                CardType.VISA_ELECTRON -> "###### ###### ####"
-                else -> super.getMask(cardType, name, bin, mask)
-            }
-        })
+        // Set valid card brands
+        vgsEtCardNumber.setValidCardBrands(cardBrand, CardType.VISA.toCardBrand())
     }
 }

@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo.samples.brands.adapter
+package com.vgscollect.androiddemo.samples.card.adapter
 
 import android.graphics.Rect
 import android.graphics.drawable.Drawable

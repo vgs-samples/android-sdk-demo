@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo.samples.brands.custom
+package com.vgscollect.androiddemo.samples.card.custom
 
 import android.os.Bundle
 import android.view.Gravity
