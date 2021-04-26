@@ -18,9 +18,11 @@ class CnameActivity: AppCompatActivity() {
     /**
      * Configure custom host name in <a href="https://dashboard.verygoodsecurity.com/">VGS dashboard</a> before using it.
      */
-    private val vgsShow = VGSShow.Builder(this, "<VAULT_ID>")
-        .setHostname("<HOST_NAME>") // Set custom hostname, for example: https://example.com
-        .build()
+    private val vgsShow: VGSShow by lazy {
+        VGSShow.Builder(this, "<VAULT_ID>")
+            .setHostname("<HOST_NAME>") // Set custom hostname, for example: https://example.com
+            .build()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -18,6 +18,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -30,7 +38,4 @@ dependencies {
     //VGS Collect SDK
     implementation 'com.verygoodsecurity:vgscollect:1.6.5'
 //    implementation 'com.verygoodsecurity:adapter-bouncer:1.0.4'
-
-    //VGS Show SDK
-    implementation 'com.verygoodsecurity:vgsshow:1.1.0'
 }

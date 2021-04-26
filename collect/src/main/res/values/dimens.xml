@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="padding">8dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="half_default_padding">8dp</dimen>
     <dimen name="button_size">48dp</dimen>
@@ -16,4 +17,6 @@
     <dimen name="field_inner_padding">12dp</dimen>
 
     <dimen name="corner_radius">4dp</dimen>
+
+    <dimen name="icon_size">24dp</dimen>
 </resources>
