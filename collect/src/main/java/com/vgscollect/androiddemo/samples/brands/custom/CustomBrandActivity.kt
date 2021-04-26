@@ -44,7 +44,7 @@ class CustomBrandActivity : AppCompatActivity() {
             arrayOf(3)
         )
         val cardBrand = CardBrand(
-            "^99",
+            "<regex_to_detect_the_brand>",
             "Custom Brand",
             R.drawable.ic_visa_dark,
             brandParams
