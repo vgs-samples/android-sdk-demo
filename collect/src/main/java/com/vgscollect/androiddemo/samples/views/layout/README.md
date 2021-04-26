@@ -1,4 +1,4 @@
-# Text Inout Layout Sample
+# Text Input Layout Sample
 
 This sample of Activity demonstrates how to use text input layout.
 
