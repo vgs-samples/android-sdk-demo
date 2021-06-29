@@ -35,11 +35,11 @@ android {
 
 dependencies {
     //VGS Collect SDK
-    implementation 'com.verygoodsecurity:vgscollect:1.6.8'
+    implementation 'com.verygoodsecurity:vgscollect:1.6.10'
     implementation 'com.verygoodsecurity:adapter-bouncer:1.0.4'
 
     //VGS Show SDK
-    implementation 'com.verygoodsecurity:vgsshow:1.1.0'
+    implementation 'com.verygoodsecurity:vgsshow:1.2.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
