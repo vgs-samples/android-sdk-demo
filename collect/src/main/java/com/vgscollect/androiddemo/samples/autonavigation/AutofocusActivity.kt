@@ -1,4 +1,4 @@
-package com.vgscollect.androiddemo.samples.autofocus
+package com.vgscollect.androiddemo.samples.autonavigation
 
 import android.os.Bundle
 import android.view.KeyEvent
