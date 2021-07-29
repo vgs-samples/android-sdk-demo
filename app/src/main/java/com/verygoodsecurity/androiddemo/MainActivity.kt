@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     //Show SDK controls
     private val revealedNumber: VGSTextView? by lazy { findViewById(R.id.revealedNumber) }
-    private val revealedExpirationDate: VGSTextView? by lazy { findViewById(R.id.revealedExpirationDate) }
 
     private var showContentIsHidden = true
 
@@ -131,7 +130,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             }
 
                             parseNumberAlias(json)
-                            parseDateAlias(json)
                         } catch (e: JSONException) {
                         }
                     }
@@ -153,10 +151,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun setupCardExpDateField() {
         vgsForm.bindView(cardExpDateField)
 
-        cardExpDateField?.setSerializer(VGSExpDateSeparateSerializer(
-            "card_data.personal_data.month",
-            "card_data.personal_data.year"
-        ))
+        cardExpDateField?.setSerializer(
+            VGSExpDateSeparateSerializer(
+                "card_data.personal_data.month",
+                "card_data.personal_data.year"
+            )
+        )
 
         cardExpDateField?.apply {
             setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
@@ -407,7 +407,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun applyPasswordOnVGSShowControls() {
-        if(showContentIsHidden) {
+        if (showContentIsHidden) {
             showContentIsHidden = false
             revealedNumber?.isSecureText = false
             passwordIcon.setImageResource(R.drawable.ic_password_on)
@@ -452,7 +452,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         VGSShowLogger.level = VGSShowLogger.Level.DEBUG
 
         vgsShow.subscribe(revealedNumber!!)
-        vgsShow.subscribe(revealedExpirationDate!!)
 
         revealedNumber?.setSecureTextRange(arrayOf(VGSTextRange(5, 8), VGSTextRange(10, 13)))
         revealedNumber?.secureTextSymbol = '#'
@@ -490,7 +489,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun revealData() {
-        if (revealNumberAlias.isNotEmpty() || revealDateAlias.isNotEmpty()) {
+        if (revealNumberAlias.isNotEmpty()) {
             setStateLoading(true)
             responseContainerView?.text = ""
             vgsShow.requestAsync(
@@ -499,8 +498,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     VGSHttpMethod.POST
                 ).body(
                     mapOf(
-                        "payment_card_number" to revealNumberAlias,
-                        "payment_card_expiration_date" to revealDateAlias
+                        "payment_card_number" to revealNumberAlias
                     )
                 ).build()
             )
@@ -509,20 +507,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    var revealDateAlias = ""
     var revealNumberAlias = ""
-    private fun parseDateAlias(json: JSONObject?) {
-        json?.let {
-            if (it.has("json") && it.getJSONObject("json").has("expDate")) {
-                it.getJSONObject("json").getString("expDate")?.let {
-                    dateToken?.text = it
-                    dateToken?.visibility = View.VISIBLE
-                    revealDateAlias = it
-                }
-            }
-        }
-    }
-
     private fun parseNumberAlias(json: JSONObject?) {
         json?.let {
             if (it.has("json") && it.getJSONObject("json").has("cardNumber")) {

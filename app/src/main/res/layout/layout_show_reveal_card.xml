@@ -48,25 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/divider"
         app:layout_constraintEnd_toStartOf="@+id/passwordIcon" />
 
-    <com.verygoodsecurity.vgsshow.widget.VGSTextView
-        android:id="@+id/revealedExpirationDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/preview_card_horizontal_padding"
-        android:paddingEnd="@dimen/preview_card_horizontal_padding"
-        android:layout_marginTop="@dimen/half_default_padding"
-        android:paddingTop="@dimen/half_default_padding"
-        android:paddingBottom="@dimen/half_default_padding"
-        android:layout_marginEnd="@dimen/default_padding"
-        app:contentPath="json.payment_card_expiration_date"
-        android:textSize="@dimen/preview_holder_name_text_size"
-        app:inputType="numberPassword"
-        app:hint="Revealed Expiration Date"
-        android:textColor="@color/preview_holder_name_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/revealedNumber"
-        app:layout_constraintEnd_toStartOf="@+id/passwordIcon" />
-
     <ImageView
         android:id="@+id/passwordIcon"
         android:layout_width="@dimen/password_icon_size"
