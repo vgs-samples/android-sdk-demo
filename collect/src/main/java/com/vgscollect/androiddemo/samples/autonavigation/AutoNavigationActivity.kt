@@ -15,34 +15,34 @@ import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
 import com.verygoodsecurity.vgscollect.view.InputFieldView
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_autofocus.*
+import kotlinx.android.synthetic.main.activity_autonavigation.*
 
-class AutofocusActivity : AppCompatActivity(), VgsCollectResponseListener {
+class AutoNavigationActivity : AppCompatActivity(), VgsCollectResponseListener {
 
     private val vgsCollect: VGSCollect by lazy {
         VGSCollect.Builder(this, "<VAULT_ID>").create().apply {
-            addOnResponseListeners(this@AutofocusActivity)
+            addOnResponseListeners(this@AutoNavigationActivity)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_autofocus)
+        setContentView(R.layout.activity_autonavigation)
         VGSCollectLogger.logLevel = VGSCollectLogger.Level.DEBUG
         initView()
     }
 
-    private var isCardNumberAutoFocusPermitted = true
-    private var isExpirationDateAutoFocusPermitted = true
+    private var isCardNumberAutoNavigationPermitted = true
+    private var isExpirationDateAutoNavigationPermitted = true
     private fun initView() {
         vgsCollect.bindView(cardHolderName)
         cardHolderName?.requestFocus()
 
         cardNumber?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
             override fun onStateChange(state: FieldState) {
-                if (state.isValid && isCardNumberAutoFocusPermitted) {
+                if (state.isValid && isCardNumberAutoNavigationPermitted) {
                     if (state.hasFocus) {
-                        isCardNumberAutoFocusPermitted = false
+                        isCardNumberAutoNavigationPermitted = false
                     }
                     expirationDate?.requestFocus()
                 }
@@ -52,9 +52,9 @@ class AutofocusActivity : AppCompatActivity(), VgsCollectResponseListener {
 
         expirationDate?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
             override fun onStateChange(state: FieldState) {
-                if (state.isValid && isExpirationDateAutoFocusPermitted) {
+                if (state.isValid && isExpirationDateAutoNavigationPermitted) {
                     if (state.hasFocus) {
-                        isExpirationDateAutoFocusPermitted = false
+                        isExpirationDateAutoNavigationPermitted = false
                     }
                     verificationCode?.requestFocus()
                 }
