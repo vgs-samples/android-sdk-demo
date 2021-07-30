@@ -32,8 +32,6 @@ class AutoNavigationActivity : AppCompatActivity(), VgsCollectResponseListener {
         initView()
     }
 
-    private var isCardNumberAutoNavigationPermitted = true
-    private var isExpirationDateAutoNavigationPermitted = true
     private fun initView() {
         configureCardHolderName()
         configureCardNumber()
@@ -63,6 +61,7 @@ class AutoNavigationActivity : AppCompatActivity(), VgsCollectResponseListener {
         )
     }
 
+    private var isExpirationDateAutoNavigationPermitted = true
     private fun configureExpirationDate() {
         expirationDate?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
             override fun onStateChange(state: FieldState) {
@@ -77,6 +76,7 @@ class AutoNavigationActivity : AppCompatActivity(), VgsCollectResponseListener {
         vgsCollect.bindView(expirationDate)
     }
 
+    private var isCardNumberAutoNavigationPermitted = true
     private fun configureCardNumber() {
         cardNumber?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
             override fun onStateChange(state: FieldState) {
