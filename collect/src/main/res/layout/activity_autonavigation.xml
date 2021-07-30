@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:paddingStart="32dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="32dp"
+    android:paddingBottom="32dp">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone" />
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="@string/card_holder"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
+            android:id="@+id/cardHolderName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:fieldName="cardHolderFieldName"
+            app:imeOptions="actionNext"
+            android:nextFocusDown="@id/cardNumber"/>
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="@string/card_number"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
+            android:id="@+id/cardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:fieldName="data.attributes.details.number"
+            app:numberDivider="-"
+            app:imeOptions="actionNext"
+            android:nextFocusDown="@id/expirationDate"/>
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="@string/exp_date"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
+            android:id="@+id/expirationDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:datePattern="MM/yy"
+            app:datePickerModes="input"
+            app:fieldName="data.attributes.details.data"
+            app:imeOptions="actionNext"
+            android:nextFocusDown="@id/verificationCode"/>
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxBackgroundModes="outline"
+        app:boxCornerRadius="8dp"
+        app:errorEnabled="true"
+        app:hint="@string/cvc"
+        app:hintEnabled="true">
+
+        <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
+            android:id="@+id/verificationCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:fieldName="data.attributes.details.verification_value"
+            app:imeOptions="actionDone"/>
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+</LinearLayout>
