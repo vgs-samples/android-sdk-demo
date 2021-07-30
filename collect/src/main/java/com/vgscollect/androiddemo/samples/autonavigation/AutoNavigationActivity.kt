@@ -35,33 +35,13 @@ class AutoNavigationActivity : AppCompatActivity(), VgsCollectResponseListener {
     private var isCardNumberAutoNavigationPermitted = true
     private var isExpirationDateAutoNavigationPermitted = true
     private fun initView() {
-        vgsCollect.bindView(cardHolderName)
-        cardHolderName?.requestFocus()
+        configureCardHolderName()
+        configureCardNumber()
+        configureExpirationDate()
+        configureVerificationCode()
+    }
 
-        cardNumber?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
-            override fun onStateChange(state: FieldState) {
-                if (state.isValid && isCardNumberAutoNavigationPermitted) {
-                    if (state.hasFocus) {
-                        isCardNumberAutoNavigationPermitted = false
-                    }
-                    expirationDate?.requestFocus()
-                }
-            }
-        })
-        vgsCollect.bindView(cardNumber)
-
-        expirationDate?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
-            override fun onStateChange(state: FieldState) {
-                if (state.isValid && isExpirationDateAutoNavigationPermitted) {
-                    if (state.hasFocus) {
-                        isExpirationDateAutoNavigationPermitted = false
-                    }
-                    verificationCode?.requestFocus()
-                }
-            }
-        })
-        vgsCollect.bindView(expirationDate)
-
+    private fun configureVerificationCode() {
         vgsCollect.bindView(verificationCode)
         verificationCode?.setOnEditorActionListener(object : InputFieldView.OnEditorActionListener {
             override fun onEditorAction(v: View?, actionId: Int, event: KeyEvent?): Boolean {
@@ -81,6 +61,39 @@ class AutoNavigationActivity : AppCompatActivity(), VgsCollectResponseListener {
                 .setPath("/post")
                 .build()
         )
+    }
+
+    private fun configureExpirationDate() {
+        expirationDate?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+            override fun onStateChange(state: FieldState) {
+                if (state.isValid && isExpirationDateAutoNavigationPermitted) {
+                    if (state.hasFocus) {
+                        isExpirationDateAutoNavigationPermitted = false
+                    }
+                    verificationCode?.requestFocus()
+                }
+            }
+        })
+        vgsCollect.bindView(expirationDate)
+    }
+
+    private fun configureCardNumber() {
+        cardNumber?.setOnFieldStateChangeListener(object : OnFieldStateChangeListener {
+            override fun onStateChange(state: FieldState) {
+                if (state.isValid && isCardNumberAutoNavigationPermitted) {
+                    if (state.hasFocus) {
+                        isCardNumberAutoNavigationPermitted = false
+                    }
+                    expirationDate?.requestFocus()
+                }
+            }
+        })
+        vgsCollect.bindView(cardNumber)
+    }
+
+    private fun configureCardHolderName() {
+        vgsCollect.bindView(cardHolderName)
+        cardHolderName?.requestFocus()
     }
 
     override fun onResponse(response: VGSResponse?) {
