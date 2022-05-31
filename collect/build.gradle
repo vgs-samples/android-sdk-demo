@@ -36,5 +36,5 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.4.0"
 
     //VGS Collect SDK
-    implementation 'com.verygoodsecurity:vgscollect:1.6.14'
+    implementation 'com.verygoodsecurity:vgscollect:1.6.19'
 }
