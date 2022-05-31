@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.vgscollect.androiddemo"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
     }
@@ -29,13 +29,12 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation "androidx.activity:activity-ktx:1.3.1"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation "androidx.activity:activity-ktx:1.4.0"
 
     //VGS Collect SDK
     implementation 'com.verygoodsecurity:vgscollect:1.6.14'
-//    implementation 'com.verygoodsecurity:adapter-bouncer:1.0.4'
 }

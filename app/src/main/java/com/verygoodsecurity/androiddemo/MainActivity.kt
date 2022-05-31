@@ -3,15 +3,12 @@ package com.verygoodsecurity.androiddemo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
 import android.util.Log
 import android.view.*
-import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.verygoodsecurity.api.bouncer.ScanActivity
 import com.verygoodsecurity.vgscollect.VGSCollectLogger
 import com.verygoodsecurity.vgscollect.core.Environment
 import com.verygoodsecurity.vgscollect.core.HTTPMethod
@@ -265,42 +262,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val staticData = mutableMapOf<String, String>()
         staticData["static_data"] = "static custom data"
         vgsForm.setCustomData(staticData)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.scan_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.scan_card) {
-            scanCard()
-            true
-        } else {
-            super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun scanCard() {
-        val bndl = with(Bundle()) {
-            val scanSettings = hashMapOf<String?, Int>().apply {
-                this[cardNumberField?.getFieldName()] = ScanActivity.CARD_NUMBER
-                this[cardCVCField?.getFieldName()] = ScanActivity.CARD_CVC
-                this[cardHolderField?.getFieldName()] = ScanActivity.CARD_HOLDER
-                this[cardExpDateField?.getFieldName()] = ScanActivity.CARD_EXP_DATE
-            }
-            putSerializable(ScanActivity.SCAN_CONFIGURATION, scanSettings)
-
-            putString(ScanActivity.API_KEY, "<bouncer-api-key>")
-
-            putBoolean(ScanActivity.ENABLE_EXPIRY_EXTRACTION, false)
-            putBoolean(ScanActivity.ENABLE_NAME_EXTRACTION, false)
-
-            this
-        }
-
-        ScanActivity.scan(this, USER_SCAN_REQUEST_CODE, bndl)
     }
 
     private fun getOnFieldStateChangeListener(): OnFieldStateChangeListener {
