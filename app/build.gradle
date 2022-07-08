@@ -34,7 +34,7 @@ android {
 
 dependencies {
     //VGS Collect SDK
-    implementation 'com.verygoodsecurity:vgscollect:1.6.19'
+    implementation 'com.verygoodsecurity:vgscollect:1.7.0'
 
     //VGS Show SDK
     implementation 'com.verygoodsecurity:vgsshow:1.2.0'
