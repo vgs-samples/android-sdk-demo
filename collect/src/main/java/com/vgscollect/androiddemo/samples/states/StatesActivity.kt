@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.verygoodsecurity.vgscollect.core.VGSCollect
 import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
+import com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_states.*
 
 class StatesActivity : AppCompatActivity() {
 
     private lateinit var vgsForm: VGSCollect
+
+    private val field: VGSCardNumberEditText by lazy { findViewById(R.id.field) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

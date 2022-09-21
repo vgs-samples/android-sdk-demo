@@ -11,17 +11,23 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_payments_checkout_default_components.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NativeCheckoutFormActivity : AppCompatActivity() {
 
     private val dateFormatter = SimpleDateFormat("MM/yy", Locale.getDefault())
+
+    private val etCardNumber: TextInputEditText by lazy { findViewById(R.id.etCardNumber) }
+    private val etCardHolderName: TextInputEditText by lazy { findViewById(R.id.etCardHolderName) }
+    private val etDate: TextInputEditText by lazy { findViewById(R.id.etDate) }
+    private val etCVC: TextInputEditText by lazy { findViewById(R.id.etCVC) }
+    private val mbAddCard: MaterialButton by lazy { findViewById(R.id.mbAddCard) }
 
     private val inputViews: List<TextInputEditText> by lazy {
         listOf(etCardNumber, etCardHolderName, etDate, etCVC)
@@ -35,33 +41,33 @@ class NativeCheckoutFormActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        etDate?.inputType = InputType.TYPE_NULL
+        etDate.inputType = InputType.TYPE_NULL
     }
 
     private fun initListeners() {
-        etCardNumber?.addTextChangedListener(object: TextWatcher {
+        etCardNumber.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
                 if (p0?.trim()?.length == MAX_CARD_NUMBER_LENGTH) {
-                    etCardHolderName?.requestFocus()
+                    etCardHolderName.requestFocus()
                 }
             }
         })
-        etDate?.addTextChangedListener(object: TextWatcher {
+        etDate.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(p0: Editable?) {
-                etCVC?.requestFocus()
+                etCVC.requestFocus()
             }
         })
-        etDate?.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
+        etDate.onFocusChangeListener = View.OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 view.hideKeyboard()
                 showDateDialog()
             }
         }
-        mbAddCard?.setOnClickListener {
+        mbAddCard.setOnClickListener {
             if (!inputViews.any { it.text.isNullOrEmpty() }) {
                 Toast.makeText(this, "Card added!", Toast.LENGTH_SHORT).show()
             }
@@ -77,13 +83,13 @@ class NativeCheckoutFormActivity : AppCompatActivity() {
                 )
                 .build().also {
                     it.addOnCancelListener {
-                        etDate?.clearFocus()
+                        etDate.clearFocus()
                     }
                     it.addOnNegativeButtonClickListener {
-                        etDate?.clearFocus()
+                        etDate.clearFocus()
                     }
                     it.addOnPositiveButtonClickListener { time ->
-                        etDate?.setText(dateFormatter.format(Date(time)))
+                        etDate.setText(dateFormatter.format(Date(time)))
                     }
                 }
                 .show(supportFragmentManager, null)

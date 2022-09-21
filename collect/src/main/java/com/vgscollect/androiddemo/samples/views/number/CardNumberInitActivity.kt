@@ -3,6 +3,7 @@ package com.vgscollect.androiddemo.samples.views.number
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.verygoodsecurity.vgscollect.core.VGSCollect
@@ -12,11 +13,12 @@ import com.verygoodsecurity.vgscollect.view.card.validation.payment.ChecksumAlgo
 import com.verygoodsecurity.vgscollect.view.card.validation.rules.PaymentCardNumberRule
 import com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_layout.*
 
 class CardNumberInitActivity : AppCompatActivity() {
 
     private lateinit var vgsCollect: VGSCollect
+
+    private val rootView: FrameLayout by lazy { findViewById(R.id.rootView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

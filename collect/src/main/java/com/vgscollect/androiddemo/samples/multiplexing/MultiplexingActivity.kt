@@ -3,6 +3,7 @@ package com.vgscollect.androiddemo.samples.multiplexing
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.verygoodsecurity.vgscollect.VGSCollectLogger
 import com.verygoodsecurity.vgscollect.core.VGSCollect
@@ -11,8 +12,8 @@ import com.verygoodsecurity.vgscollect.core.model.network.VGSRequest
 import com.verygoodsecurity.vgscollect.core.model.network.VGSResponse
 import com.verygoodsecurity.vgscollect.view.InputFieldView
 import com.verygoodsecurity.vgscollect.view.core.serializers.VGSExpDateSeparateSerializer
+import com.verygoodsecurity.vgscollect.widget.*
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_multiplexing.*
 
 class MultiplexingActivity : AppCompatActivity(), VgsCollectResponseListener,
     InputFieldView.OnTextChangedListener {
@@ -23,6 +24,18 @@ class MultiplexingActivity : AppCompatActivity(), VgsCollectResponseListener,
         }
     }
 
+    private val progressBar: ProgressBar by lazy { findViewById(R.id.progressBar) }
+    private val tilFirstName: VGSTextInputLayout by lazy { findViewById(R.id.tilFirstName) }
+    private val tilLastName: VGSTextInputLayout by lazy { findViewById(R.id.tilLastName) }
+    private val tilCardNumber: VGSTextInputLayout by lazy { findViewById(R.id.tilCardNumber) }
+    private val tilExpirationDate: VGSTextInputLayout by lazy { findViewById(R.id.tilExpirationDate) }
+    private val tilCVC: VGSTextInputLayout by lazy { findViewById(R.id.tilCVC) }
+    private val etCardNumber: VGSCardNumberEditText by lazy { findViewById(R.id.etCardNumber) }
+    private val etFirstName: PersonNameEditText by lazy { findViewById(R.id.etFirstName) }
+    private val etLastName: PersonNameEditText by lazy { findViewById(R.id.etLastName) }
+    private val etExpirationDate: ExpirationDateEditText by lazy { findViewById(R.id.etExpirationDate) }
+    private val etCVC: CardVerificationCodeEditText by lazy { findViewById(R.id.etCVC) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_multiplexing)
@@ -32,7 +45,7 @@ class MultiplexingActivity : AppCompatActivity(), VgsCollectResponseListener,
 
     override fun onResponse(response: VGSResponse?) {
         Log.d(MultiplexingActivity::class.java.simpleName, response.toString())
-        progressBar?.visibility = View.GONE
+        progressBar.visibility = View.GONE
     }
 
     override fun onTextChange(view: InputFieldView, isEmpty: Boolean) {
@@ -47,7 +60,7 @@ class MultiplexingActivity : AppCompatActivity(), VgsCollectResponseListener,
 
     fun submit(@Suppress("UNUSED_PARAMETER") v: View) {
         validateFieldsAndRun {
-            progressBar?.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
             vgsCollect.asyncSubmit(
                 VGSRequest.VGSRequestBuilder()
                     .setPath("/api/v1/financial_instruments")
@@ -76,11 +89,11 @@ class MultiplexingActivity : AppCompatActivity(), VgsCollectResponseListener,
         )
 
         // Set view state change listener
-        etFirstName?.addOnTextChangeListener(this)
-        etLastName?.addOnTextChangeListener(this)
-        etCardNumber?.addOnTextChangeListener(this)
-        etExpirationDate?.addOnTextChangeListener(this)
-        etCVC?.addOnTextChangeListener(this)
+        etFirstName.addOnTextChangeListener(this)
+        etLastName.addOnTextChangeListener(this)
+        etCardNumber.addOnTextChangeListener(this)
+        etExpirationDate.addOnTextChangeListener(this)
+        etCVC.addOnTextChangeListener(this)
 
         // Bind VGS view to VGSCollect
         vgsCollect.bindView(etFirstName, etLastName, etCardNumber, etExpirationDate, etCVC)
@@ -88,24 +101,24 @@ class MultiplexingActivity : AppCompatActivity(), VgsCollectResponseListener,
 
     private inline fun validateFieldsAndRun(action: () -> Unit) {
         var shouldRun = true
-        if (etFirstName?.getState()?.isValid == false) {
-            tilFirstName?.setError("Please, enter valid name!")
+        if (etFirstName.getState()?.isValid == false) {
+            tilFirstName.setError("Please, enter valid name!")
             shouldRun = false
         }
-        if (etLastName?.getState()?.isValid == false) {
-            tilLastName?.setError("Please, enter valid last name!")
+        if (etLastName.getState()?.isValid == false) {
+            tilLastName.setError("Please, enter valid last name!")
             shouldRun = false
         }
-        if (etCardNumber?.getState()?.isValid == false) {
-            tilCardNumber?.setError("Please, enter valid card number!")
+        if (etCardNumber.getState()?.isValid == false) {
+            tilCardNumber.setError("Please, enter valid card number!")
             shouldRun = false
         }
-        if (etExpirationDate?.getState()?.isValid == false) {
-            tilExpirationDate?.setError("Please, enter valid expiration date!")
+        if (etExpirationDate.getState()?.isValid == false) {
+            tilExpirationDate.setError("Please, enter valid expiration date!")
             shouldRun = false
         }
-        if (etCVC?.getState()?.isValid == false) {
-            tilCVC?.setError("Please, enter valid cvc!")
+        if (etCVC.getState()?.isValid == false) {
+            tilCVC.setError("Please, enter valid cvc!")
             shouldRun = false
         }
         if (shouldRun) action.invoke()

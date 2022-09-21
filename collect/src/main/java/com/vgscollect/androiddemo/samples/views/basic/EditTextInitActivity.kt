@@ -2,6 +2,7 @@ package com.vgscollect.androiddemo.samples.views.basic
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.verygoodsecurity.vgscollect.core.VGSCollect
@@ -10,11 +11,12 @@ import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
 import com.verygoodsecurity.vgscollect.view.card.validation.rules.VGSInfoRule
 import com.verygoodsecurity.vgscollect.widget.VGSEditText
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_layout.*
 
 class EditTextInitActivity : AppCompatActivity() {
 
     private lateinit var vgsCollect: VGSCollect
+
+    private val rootView: FrameLayout by lazy { findViewById(R.id.rootView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -2,16 +2,19 @@ package com.vgscollect.androiddemo.samples.fileprovider
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.verygoodsecurity.vgscollect.core.VGSCollect
 import com.verygoodsecurity.vgscollect.core.storage.content.file.VGSFileProvider
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_file_provider.*
 
 class FileProviderActivity : AppCompatActivity() {
 
     private lateinit var vgsForm: VGSCollect
     private lateinit var fileProvider: VGSFileProvider
+
+    private val attachBtn: Button by lazy { findViewById(R.id.attachBtn) }
+    private val detachBtn: Button by lazy { findViewById(R.id.detachBtn) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +26,11 @@ class FileProviderActivity : AppCompatActivity() {
         //retrieve provider for managing files
         fileProvider = vgsForm.getFileProvider()
 
-        attachBtn?.setOnClickListener {
+        attachBtn.setOnClickListener {
             attachFileToCollect()
         }
 
-        detachBtn?.setOnClickListener {
+        detachBtn.setOnClickListener {
             detachFiles()
         }
     }
