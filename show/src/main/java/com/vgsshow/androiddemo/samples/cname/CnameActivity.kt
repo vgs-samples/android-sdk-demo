@@ -2,6 +2,7 @@ package com.vgsshow.androiddemo.samples.cname
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.verygoodsecurity.vgsshow.VGSShow
@@ -11,7 +12,6 @@ import com.verygoodsecurity.vgsshow.core.network.model.VGSRequest
 import com.verygoodsecurity.vgsshow.core.network.model.VGSResponse
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import com.vgsshow.androiddemo.R
-import kotlinx.android.synthetic.main.activity_layout.*
 
 class CnameActivity: AppCompatActivity() {
 
@@ -23,6 +23,8 @@ class CnameActivity: AppCompatActivity() {
             .setHostname("<HOST_NAME>") // Set custom hostname, for example: https://example.com
             .build()
     }
+
+    private val rootView: FrameLayout by lazy { findViewById(R.id.rootView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

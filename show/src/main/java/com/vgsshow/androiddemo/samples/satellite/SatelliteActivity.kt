@@ -2,6 +2,7 @@ package com.vgsshow.androiddemo.samples.satellite
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.verygoodsecurity.vgsshow.VGSShow
@@ -11,7 +12,6 @@ import com.verygoodsecurity.vgsshow.core.network.model.VGSRequest
 import com.verygoodsecurity.vgsshow.core.network.model.VGSResponse
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import com.vgsshow.androiddemo.R
-import kotlinx.android.synthetic.main.activity_layout.*
 
 class SatelliteActivity : AppCompatActivity() {
 
@@ -25,6 +25,8 @@ class SatelliteActivity : AppCompatActivity() {
             .setPort(9098) // Set VGS-Satellite port, 9098 is default VGS-Satellite reverse proxy port, set correct port if you have edited your VGS-Satellite configuration.
             .build()
     }
+
+    private val rootView: FrameLayout by lazy { findViewById(R.id.rootView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
