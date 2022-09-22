@@ -5,10 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContextCompat
+import com.google.android.material.button.MaterialButton
 import com.verygoodsecurity.vgscollect.VGSCollectLogger
 import com.verygoodsecurity.vgscollect.core.Environment
 import com.verygoodsecurity.vgscollect.core.HTTPMethod
@@ -33,9 +32,6 @@ import com.verygoodsecurity.vgsshow.core.logs.VGSShowLogger
 import com.verygoodsecurity.vgsshow.core.network.client.VGSHttpMethod
 import com.verygoodsecurity.vgsshow.widget.VGSTextView
 import com.verygoodsecurity.vgsshow.widget.view.textview.model.VGSTextRange
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.attachBtn
-import kotlinx.android.synthetic.main.layout_show_reveal_card.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.lang.StringBuilder
@@ -70,6 +66,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val numberToken: TextView? by lazy { findViewById(R.id.numberToken) }
     private val previewCardNumber: TextView? by lazy { findViewById(R.id.previewCardNumber) }
     private val previewCardBrand: ImageView? by lazy { findViewById(R.id.previewCardBrand) }
+    private val submitBtn: MaterialButton? by lazy { findViewById(R.id.submitBtn) }
+    private val revealBtn: MaterialButton? by lazy { findViewById(R.id.revealBtn) }
+    private val attachBtn: MaterialButton? by lazy { findViewById(R.id.attachBtn) }
+    private val responseContainerView: TextView? by lazy { findViewById(R.id.responseContainerView) }
+    private val stateContainerView: TextView? by lazy { findViewById(R.id.stateContainerView) }
+    private val responseTitleView: TextView? by lazy { findViewById(R.id.responseTitleView) }
+    private val progressBar: FrameLayout? by lazy { findViewById(R.id.progressBar) }
+    private val passwordIcon: ImageView? by lazy { findViewById(R.id.passwordIcon) }
 
 
     // Collect SDK controls
@@ -117,7 +121,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
                 when (response) {
                     is VGSResponse.SuccessResponse -> {
-                        responseContainerView.text =
+                        responseContainerView?.text =
                             "Collect Response Code: \n ${response.successCode}"
 
                         try {
@@ -130,7 +134,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         } catch (e: JSONException) {
                         }
                     }
-                    is VGSResponse.ErrorResponse -> responseContainerView.text = response.toString()
+                    is VGSResponse.ErrorResponse -> responseContainerView?.text = response.toString()
                 }
             }
         })
@@ -349,12 +353,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setEnabledResponseHeader(isEnabled: Boolean) {
         if (isEnabled) {
-            attachBtn.setTextColor(ContextCompat.getColor(this, R.color.state_active))
-            responseTitleView.setTextColor(ContextCompat.getColor(this, R.color.state_active))
+            attachBtn?.setTextColor(ContextCompat.getColor(this, R.color.state_active))
+            responseTitleView?.setTextColor(ContextCompat.getColor(this, R.color.state_active))
         } else {
-            responseContainerView.text = ""
-            attachBtn.setTextColor(ContextCompat.getColor(this, R.color.state_unactive))
-            responseTitleView.setTextColor(ContextCompat.getColor(this, R.color.state_unactive))
+            responseContainerView?.text = ""
+            attachBtn?.setTextColor(ContextCompat.getColor(this, R.color.state_unactive))
+            responseTitleView?.setTextColor(ContextCompat.getColor(this, R.color.state_unactive))
         }
     }
 
@@ -371,11 +375,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (showContentIsHidden) {
             showContentIsHidden = false
             revealedNumber?.isSecureText = false
-            passwordIcon.setImageResource(R.drawable.ic_password_on)
+            passwordIcon?.setImageResource(R.drawable.ic_password_on)
         } else {
             showContentIsHidden = true
             revealedNumber?.isSecureText = true
-            passwordIcon.setImageResource(R.drawable.ic_password_off)
+            passwordIcon?.setImageResource(R.drawable.ic_password_off)
         }
     }
 
@@ -443,7 +447,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         vgsShow.addOnResponseListener(object : VGSOnResponseListener {
             override fun onResponse(response: com.verygoodsecurity.vgsshow.core.network.model.VGSResponse) {
                 setStateLoading(false)
-                responseContainerView.text = "Show Response Code: \n ${response.code}"
+                responseContainerView?.text = "Show Response Code: \n ${response.code}"
                 Log.d(MainActivity::class.simpleName, response.toString())
             }
         })

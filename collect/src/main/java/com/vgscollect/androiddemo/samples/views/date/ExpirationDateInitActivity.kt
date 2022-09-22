@@ -2,6 +2,7 @@ package com.vgscollect.androiddemo.samples.views.date
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.verygoodsecurity.vgscollect.core.VGSCollect
@@ -11,11 +12,12 @@ import com.verygoodsecurity.vgscollect.view.core.serializers.VGSExpDateSeparateS
 import com.verygoodsecurity.vgscollect.view.date.DatePickerMode
 import com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_layout.*
 
 class ExpirationDateInitActivity : AppCompatActivity() {
 
     private lateinit var vgsCollect: VGSCollect
+
+    private val rootView: FrameLayout by lazy { findViewById(R.id.rootView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

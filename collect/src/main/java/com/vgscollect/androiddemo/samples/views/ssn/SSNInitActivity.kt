@@ -1,20 +1,21 @@
 package com.vgscollect.androiddemo.samples.views.ssn
 
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.verygoodsecurity.vgscollect.core.VGSCollect
 import com.verygoodsecurity.vgscollect.core.model.state.FieldState
 import com.verygoodsecurity.vgscollect.core.storage.OnFieldStateChangeListener
 import com.verygoodsecurity.vgscollect.widget.SSNEditText
 import com.vgscollect.androiddemo.R
-import kotlinx.android.synthetic.main.activity_ssn_field.*
 
 class SSNInitActivity : AppCompatActivity() {
 
-    private lateinit var ssn1 : SSNEditText
-    private lateinit var ssn2 : SSNEditText
-
     private lateinit var vgsForm: VGSCollect
+
+    private lateinit var ssn2: SSNEditText
+    private val ssn1: SSNEditText by lazy { findViewById(R.id.ssnFromLayout) }
+    private val parentLayout: LinearLayout by lazy { findViewById(R.id.parentLayout) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +23,6 @@ class SSNInitActivity : AppCompatActivity() {
 
         // Initialize VGSCollect
         vgsForm = VGSCollect(this, "<vault_id>", "<environment>")
-
-        ssn1 = ssnFromLayout
 
         createFieldProgrammatically()
 
