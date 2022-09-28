@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 33
+
     defaultConfig {
         applicationId "com.vgscollect.androiddemo"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
@@ -35,5 +35,5 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.4.0"
 
     //VGS Collect SDK
-    implementation 'com.verygoodsecurity:vgscollect:1.7.0'
+    implementation 'com.verygoodsecurity:vgscollect:1.7.3'
 }

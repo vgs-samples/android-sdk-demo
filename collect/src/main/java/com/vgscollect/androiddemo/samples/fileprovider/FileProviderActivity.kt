@@ -42,7 +42,7 @@ class FileProviderActivity : AppCompatActivity() {
 
     private fun attachFileToCollect() {
         //Attach file to the Collect SDK. FIELD_NAME - it is a key under which the file for JSON will be saved before sending.
-        fileProvider.attachFile("<field_name>")
+        fileProvider.attachFile(this, "<field_name>")
     }
 
     private fun detachFiles() {

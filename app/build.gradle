@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.verygoodsecurity.androiddemo"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -33,7 +33,7 @@ android {
 
 dependencies {
     //VGS Collect SDK
-    implementation 'com.verygoodsecurity:vgscollect:1.7.0'
+    implementation 'com.verygoodsecurity:vgscollect:1.7.3'
 
     //VGS Show SDK
     implementation 'com.verygoodsecurity:vgsshow:1.2.0'
