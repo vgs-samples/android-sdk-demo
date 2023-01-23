@@ -27,13 +27,18 @@ android {
     }
 }
 
+repositories {
+    maven { url 'https://maven.microblink.com' }
+}
+
 dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation "androidx.activity:activity-ktx:1.6.1"
 
     //VGS Collect SDK
-    implementation 'com.verygoodsecurity:vgscollect:1.7.3'
+    implementation 'com.verygoodsecurity:vgscollect:1.7.5'
+    implementation 'com.verygoodsecurity:adapter-blinkcard:1.0.0'
 }
