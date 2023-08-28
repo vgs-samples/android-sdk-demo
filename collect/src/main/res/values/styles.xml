@@ -7,6 +7,8 @@
         <item name="colorControlNormal">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Compose" parent="@style/Theme.Material3.DayNight"/>
+
     <style name="AppTheme.PaymentField">
         <item name="android:paddingStart">@dimen/vgs_field_horizontal_padding</item>
         <item name="android:paddingEnd">@dimen/vgs_field_horizontal_padding</item>
