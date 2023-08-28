@@ -44,7 +44,7 @@ import kotlinx.coroutines.launch
 class ComposeActivity: ComponentActivity() {
 
     private val collect: VGSCollect by lazy {
-        VGSCollect(this, "tntt1rsray8")
+        VGSCollect(this, "")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
