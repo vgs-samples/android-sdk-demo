@@ -67,8 +67,6 @@ class ComposeActivity: ComponentActivity() {
                     }
                 }
 
-                Log.d("Test", "recomposition, cardNumberView = $cardNumberView, cvcView = $cvcView")
-
                 Content(
                     onCardNumberViewCreated = { cardNumberView = it },
                     onCVCViewCreated = { cvcView = it },

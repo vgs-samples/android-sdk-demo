@@ -1,6 +1,6 @@
 # Compare fields content
 
-This sample demonstrates how to VGS with Jetpack Compose.
+This sample demonstrates how to use VGS with Jetpack Compose.
 
 ## Prerequisites
 
@@ -28,4 +28,4 @@ This sample demonstrates how to VGS with Jetpack Compose.
 
 ## Support
 
-If you've found an error in this sample, please submit an issue or write on email: support@verygoodsecurity.com.
+If you've found an error in this sample, please submit an issue or write on email: support@verygoodsecurity.com or create Issue on GitHub.
