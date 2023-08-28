@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        style="@style/VGSCollect.Widget.TextInputLayout.OutlineBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="false"
+        app:hint="NAME">
+
+        <com.verygoodsecurity.vgscollect.widget.PersonNameEditText
+            android:id="@+id/vgsCardHolderName"
+            style="@style/VGSCollect.Widget.TextInputEditText.OutlineBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fieldName="card.name" />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        style="@style/VGSCollect.Widget.TextInputLayout.OutlineBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:errorEnabled="false"
+        app:hint="PAN">
+
+        <com.verygoodsecurity.vgscollect.widget.VGSCardNumberEditText
+            android:id="@+id/vgsCardNumber"
+            style="@style/VGSCollect.Widget.TextInputEditText.OutlineBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:brandIconVisibility="always"
+            app:cardBrandIconGravity="end"
+            app:fieldName="card.pan"
+            app:imeOptions="actionNext"
+            app:numberDivider=" " />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        style="@style/VGSCollect.Widget.TextInputLayout.OutlineBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:errorEnabled="false"
+        app:hint="EXPIRY">
+
+        <com.verygoodsecurity.vgscollect.widget.ExpirationDateEditText
+            android:id="@+id/vgsCardExpiry"
+            style="@style/VGSCollect.Widget.TextInputEditText.OutlineBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fieldName="card.expiry"
+            app:imeOptions="actionNext" />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout
+        style="@style/VGSCollect.Widget.TextInputLayout.OutlineBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:errorEnabled="false"
+        app:hint="CVC">
+
+        <com.verygoodsecurity.vgscollect.widget.CardVerificationCodeEditText
+            android:id="@+id/vgsCardCvc"
+            style="@style/VGSCollect.Widget.TextInputEditText.OutlineBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:datePattern="MM/yy"
+            app:datePickerModes="input"
+            app:fieldName="card.cvc"
+            app:imeOptions="actionNext"
+            app:inputType="date"
+            app:previewIconGravity="end"
+            app:previewIconVisibility="always" />
+    </com.verygoodsecurity.vgscollect.widget.VGSTextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
+        android:text="Scan"
+        tools:ignore="HardcodedText" />
+</androidx.appcompat.widget.LinearLayoutCompat>
